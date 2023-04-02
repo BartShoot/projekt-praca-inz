@@ -8,5 +8,9 @@
         x:Class="NodeCV.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="NodeCV">
-        <views:DragAndDropPage />
+	<StackPanel>
+		<!--<views:DragAndDropPage />-->
+		<views:NodeCanvas Height="500" Background="AliceBlue"/>
+
+	</StackPanel>
 </Window>
