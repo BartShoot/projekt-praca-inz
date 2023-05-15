@@ -19,7 +19,7 @@ namespace NoodleCV.Models
 			PointerPressed += OnPointerPressed;
 			PointerMoved += OnPointerMoved;
 			PointerReleased += OnPointerReleased;
-		
+			Render(new DrawingContext(PlatformImp);
 		}
 
 		private void OnPointerPressed(object sender, PointerPressedEventArgs e)
