@@ -1,9 +1,9 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using NoodleCV.ViewModels;
+using Prototype.ViewModels;
 using System;
 
-namespace NoodleCV
+namespace Prototype
 {
 	public class ViewLocator : IDataTemplate
 	{

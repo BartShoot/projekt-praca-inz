@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace NoodleCV.Views
+namespace Prototype.Views
 {
 	public partial class MainWindow : Window
 	{
