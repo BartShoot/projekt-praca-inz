@@ -15,6 +15,9 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<StackPanel>
+		<Label Content="Choose file:"/>
+		<Button Content="FilePicker" Command="{Binding SelectFileDialogCommand}"/>
+	</StackPanel>
 
 </Window>
