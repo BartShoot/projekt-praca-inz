@@ -1,10 +1,6 @@
 ﻿using Microsoft.Win32;
 using OpenCvSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrototypeWPF.Operations
 {
@@ -29,7 +25,6 @@ namespace PrototypeWPF.Operations
             if (saveFileDialog1.FileName != "")
             {
                 _path = saveFileDialog1.FileName;
-
             }
             Image.SaveImage(_path);
             return Image;
