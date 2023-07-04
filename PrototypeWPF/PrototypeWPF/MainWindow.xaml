@@ -18,11 +18,12 @@
         <StackPanel Grid.Column="1" >
             <Button Margin="5" Content="Choose image" Click="PickImage"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
-                <ComboBox Width="100" x:Name="OperationList"></ComboBox>
-                <Button HorizontalAlignment="Right" Click="AddOperation">Add</Button>
+                <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged"/>
+                <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add"/>
             </StackPanel>
+            <ContentControl Margin="5" MinHeight="100" x:Name="EditOperation"/>
             <Button Content="Execute" Margin="5" Click="ExecuteOperations"/>
-            <ListBox Margin="5" x:Name="PickedOperations"/>
+            <ListBox Margin="5" x:Name="PickedOperations" SelectionChanged="PickedOperations_SelectionChanged"/>
         </StackPanel>
 
     </Grid>

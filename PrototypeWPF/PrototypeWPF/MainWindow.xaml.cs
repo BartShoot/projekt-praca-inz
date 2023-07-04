@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using OpenCvSharp;
 using PrototypeWPF.Operations;
+using PrototypeWPF.OperationsViews;
 using PrototypeWPF.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,8 @@ namespace PrototypeWPF
         public List<IOperation> operations = new();
         public List<IOperation> allOperations = new();
         public string path;
-        Mat image = new Mat("D:\\zdj\\myszka.jpg", ImreadModes.Color);
+        Mat image = new Mat();
+        Mat backup = new Mat();
 
         public MainWindow()
         {
@@ -43,6 +45,7 @@ namespace PrototypeWPF
             }
             var placeholder2 = MatToBitmap(image);
             imageProcessed.Source = placeholder2.ToBitmapSourceGrayscale();
+            image = backup;
         }
 
         private void AddOperation(object sender, System.Windows.RoutedEventArgs e)
@@ -70,9 +73,20 @@ namespace PrototypeWPF
             if (op.ShowDialog() == true)
             {
                 image = new Mat(op.FileName, ImreadModes.Color);
+                backup = image;
                 var placeholder = MatToBitmap(image);
                 imageDisplay.Source = placeholder.ToBitmapSourceBGR();
             }
+        }
+
+        private void OperationList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            EditOperation.Content = allOperations[OperationList.SelectedIndex].ParametersView;
+        }
+
+        private void PickedOperations_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            EditOperation.Content = operations[PickedOperations.SelectedIndex].ParametersView;
         }
     }
 }

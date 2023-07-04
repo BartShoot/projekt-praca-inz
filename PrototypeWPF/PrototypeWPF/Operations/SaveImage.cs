@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using OpenCvSharp;
 using System;
+using System.Windows.Controls;
 
 namespace PrototypeWPF.Operations
 {
@@ -29,5 +30,7 @@ namespace PrototypeWPF.Operations
             Image.SaveImage(_path);
             return Image;
         };
+
+        public UserControl ParametersView => new UserControl();
     }
 }

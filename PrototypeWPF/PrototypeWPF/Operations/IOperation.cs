@@ -1,5 +1,6 @@
 ﻿using OpenCvSharp;
 using System;
+using System.Windows.Controls;
 
 namespace PrototypeWPF.Operations
 {
@@ -9,5 +10,6 @@ namespace PrototypeWPF.Operations
         string Name { get; }
         string Description { get; }
         Func<Mat> GetFunc { get; }
+        UserControl ParametersView { get; }
     }
 }
