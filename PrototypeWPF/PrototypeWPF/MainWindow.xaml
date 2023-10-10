@@ -3,28 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PrototypeWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="10">
-            <Image Height="700" x:Name="imageDisplay"/>
-            <Image Height="700" x:Name="imageProcessed"/>
+            <Image Height="700" x:Name="imageDisplay" />
+            <Image Height="700" x:Name="imageProcessed" />
         </StackPanel>
-        <StackPanel Grid.Column="1" >
-            <Button Margin="5" Content="Choose image" Click="PickImage"/>
+        <StackPanel Grid.Column="1">
+            <Button Margin="5" Content="Choose image" Click="PickImage" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
-                <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged"/>
-                <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add"/>
+                <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged" />
+                <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add" />
             </StackPanel>
-            <ContentControl Margin="5" MinHeight="100" x:Name="EditOperation"/>
-            <Button Content="Execute" Margin="5" Click="ExecuteOperations"/>
-            <ListBox Margin="5" x:Name="PickedOperations" SelectionChanged="PickedOperations_SelectionChanged"/>
+            <ContentControl Margin="5" MinHeight="100" x:Name="EditOperation" />
+            <Button Content="Execute" Margin="5" Click="ExecuteOperations" />
+            <ListBox Margin="5" x:Name="PickedOperations" SelectionChanged="PickedOperations_SelectionChanged" />
         </StackPanel>
-
     </Grid>
 </Window>

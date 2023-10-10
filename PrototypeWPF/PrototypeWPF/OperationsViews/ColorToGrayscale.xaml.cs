@@ -9,11 +9,11 @@ namespace PrototypeWPF.OperationsViews
     /// <summary>
     /// Interaction logic for ColorToGrayscale.xaml
     /// </summary>
-    public partial class ColorToGrayscaleView : UserControl
+    public partial class ChangeColorspaceView : UserControl
     {
-        ColorToGrayscale test;
+        ChangeColorspace test;
 
-        public ColorToGrayscaleView(ColorToGrayscale function)
+        public ChangeColorspaceView(ChangeColorspace function)
         {
             test = function;
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace PrototypeWPF.OperationsViews
 
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
+            test.ConversionCodes = (ColorConversionCodes)ConversionType.SelectedValue;
         }
     }
 }
