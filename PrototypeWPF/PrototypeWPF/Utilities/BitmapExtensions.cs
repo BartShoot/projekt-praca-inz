@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -9,8 +10,8 @@ namespace PrototypeWPF.Utilities
         public static BitmapSource ToBitmapSourceBGR(this Bitmap bitmap)
         {
             var bitmapData = bitmap.LockBits(
-                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
             var bitmapSource = BitmapSource.Create(
                 bitmapData.Width, bitmapData.Height,
@@ -26,8 +27,8 @@ namespace PrototypeWPF.Utilities
         public static BitmapSource ToBitmapSourceGrayscale(this Bitmap bitmap)
         {
             var bitmapData = bitmap.LockBits(
-                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
             var bitmapSource = BitmapSource.Create(
                 bitmapData.Width, bitmapData.Height,

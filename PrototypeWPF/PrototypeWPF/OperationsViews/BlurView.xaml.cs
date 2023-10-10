@@ -1,7 +1,7 @@
-﻿using PrototypeWPF.Operations;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using PrototypeWPF.Operations;
 
 namespace PrototypeWPF.OperationsViews
 {

@@ -1,7 +1,7 @@
-﻿using Microsoft.Win32;
-using OpenCvSharp;
-using System;
+﻿using System;
 using System.Windows.Controls;
+using Microsoft.Win32;
+using OpenCvSharp;
 
 namespace PrototypeWPF.Operations
 {
@@ -11,7 +11,11 @@ namespace PrototypeWPF.Operations
 
         private string _path;
 
-        public Mat Image { get { return _image; } set => _image = value; }
+        public Mat Image
+        {
+            get { return _image; }
+            set => _image = value;
+        }
 
         public string Name => "Save";
 
@@ -29,6 +33,7 @@ namespace PrototypeWPF.Operations
             {
                 _path = saveFileDialog1.FileName;
             }
+
             Image.SaveImage(_path);
             return Image;
         };

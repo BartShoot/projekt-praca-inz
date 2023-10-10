@@ -13,7 +13,6 @@ namespace PrototypeWPF
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-
         public List<IOperation> operations = new();
         public List<IOperation> allOperations = new();
         public string path;
@@ -42,6 +41,7 @@ namespace PrototypeWPF
                 operation.Image = image;
                 image = operation.GetFunc();
             }
+
             var placeholder2 = MatToBitmap(image);
             imageProcessed.Source = placeholder2.ToBitmapSourceGrayscale();
             image = backup;
@@ -52,10 +52,12 @@ namespace PrototypeWPF
             operations.Add(allOperations[OperationList.SelectedIndex]);
             PickedOperations.Items.Add((allOperations[OperationList.SelectedIndex].Name));
         }
+
         public Bitmap MatToBitmap(Mat image)
         {
             return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(image);
         }
+
         private void WindowClosingEventHandler(object sender, CancelEventArgs e)
         {
             CancelEventArgs closedEventArgs = e;
@@ -67,8 +69,8 @@ namespace PrototypeWPF
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
+                        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                        "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
                 image = new Mat(op.FileName, ImreadModes.Color);
@@ -83,7 +85,8 @@ namespace PrototypeWPF
             EditOperation.Content = allOperations[OperationList.SelectedIndex].ParametersView;
         }
 
-        private void PickedOperations_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void PickedOperations_SelectionChanged(object sender,
+            System.Windows.Controls.SelectionChangedEventArgs e)
         {
             EditOperation.Content = operations[PickedOperations.SelectedIndex].ParametersView;
         }

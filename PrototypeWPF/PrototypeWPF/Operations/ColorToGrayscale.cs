@@ -9,7 +9,11 @@ namespace PrototypeWPF.Operations
     {
         private Mat _image;
 
-        public Mat Image { get { return _image; } set => _image = value; }
+        public Mat Image
+        {
+            get { return _image; }
+            set => _image = value;
+        }
 
         public string Name => "Color to Grayscale";
 
@@ -21,6 +25,10 @@ namespace PrototypeWPF.Operations
 
         public UserControl ParametersView => new ColorToGrayscaleView(this);
 
-        public ColorConversionCodes ConversionCodes { get => _conversionCodes; set => _conversionCodes = value; }
+        public ColorConversionCodes ConversionCodes
+        {
+            get => _conversionCodes;
+            set => _conversionCodes = value;
+        }
     }
 }
