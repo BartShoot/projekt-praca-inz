@@ -8,7 +8,9 @@ namespace PrototypeWPF.Operations
     internal class SaveImage : IOperation
     {
         private Mat _image;
+
         private string _path;
+
         public Mat Image { get { return _image; } set => _image = value; }
 
         public string Name => "Save";

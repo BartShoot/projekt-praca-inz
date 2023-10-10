@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using OpenCvSharp;
 using PrototypeWPF.Operations;
-using PrototypeWPF.OperationsViews;
 using PrototypeWPF.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;

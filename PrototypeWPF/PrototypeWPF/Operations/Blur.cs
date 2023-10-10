@@ -12,8 +12,11 @@ namespace PrototypeWPF.Operations
         public string Description => "Blur the image";
 
         public Func<Mat> GetFunc => () => Image.Blur(new OpenCvSharp.Size(_size, _size));
+
         private int _size = 4;
+        
         public int Size { get => _size; set => _size = value; }
+
         private Mat _image;
 
         public Mat Image { get { return _image; } set => _image = value; }
