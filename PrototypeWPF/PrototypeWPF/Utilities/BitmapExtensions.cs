@@ -7,6 +7,7 @@ namespace PrototypeWPF.Utilities
 {
     internal static class BitmapExtensions
     {
+        // TODO: pick correct ToBitmap function by channel/variable in Mat wrapper
         public static BitmapSource ToBitmapSourceBGR(this Bitmap bitmap)
         {
             var bitmapData = bitmap.LockBits(

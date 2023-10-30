@@ -23,6 +23,7 @@ namespace PrototypeWPF
         {
             this.Closing += WindowClosingEventHandler;
 
+            _allOperations.Add(new SelectImage());
             _allOperations.Add(new Blur());
             _allOperations.Add(new ChangeColorspace());
             _allOperations.Add(new SaveImage());
@@ -38,7 +39,7 @@ namespace PrototypeWPF
         {
             foreach (var operation in _operations)
             {
-                operation.Image = _image;
+                operation.Input = _image;
                 _image = operation.GetFunc();
             }
 
@@ -82,12 +83,16 @@ namespace PrototypeWPF
 
         private void OperationList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            // TODO: Create new object and save with parameters set up in parameters view
             EditOperation.Content = _allOperations[OperationList.SelectedIndex].ParametersView;
         }
 
         private void PickedOperations_SelectionChanged(object sender,
             System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            // TODO: execute if Output null
+            imageDisplay.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Input).ToBitmapSourceBGR();
+            imageProcessed.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Output).ToBitmapSourceBGR();
             EditOperation.Content = _operations[PickedOperations.SelectedIndex].ParametersView;
         }
     }
