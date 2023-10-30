@@ -91,6 +91,18 @@ namespace PrototypeWPF
             System.Windows.Controls.SelectionChangedEventArgs e)
         {
             // TODO: execute if Output null
+
+            //if (_operations[PickedOperations.SelectedIndex].Output == null)
+            //{
+                if (PickedOperations.SelectedIndex == 0)
+                {
+                    _operations[PickedOperations.SelectedIndex].GetFunc();
+                }
+                else
+                {
+                    _operations[PickedOperations.SelectedIndex].Input = _operations[PickedOperations.SelectedIndex - 1].Output;
+                }
+            //}
             imageDisplay.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Input).ToBitmapSourceBGR();
             imageProcessed.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Output).ToBitmapSourceBGR();
             EditOperation.Content = _operations[PickedOperations.SelectedIndex].ParametersView;

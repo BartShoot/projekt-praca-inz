@@ -9,6 +9,13 @@ namespace PrototypeWPF.Operations
     {
         private Mat _input;
         private Mat _output;
+        private int _size = 4;
+
+        public int Size
+        {
+            get => _size;
+            set => _size = value;
+        }
 
         public Mat Input
         {
@@ -21,6 +28,7 @@ namespace PrototypeWPF.Operations
             get { return _output; }
             set => _output = value;
         }
+
         public string Name => "Blur";
 
         public string Description => "Blur the image";
@@ -31,16 +39,6 @@ namespace PrototypeWPF.Operations
             Output.Blur(new OpenCvSharp.Size(_size, _size));
             return Output;
         };
-
-        private int _size = 4;
-
-        public int Size
-        {
-            get => _size;
-            set => _size = value;
-        }
-
-        private Mat _image;
 
         public UserControl ParametersView => new BlurView(this);
     }
