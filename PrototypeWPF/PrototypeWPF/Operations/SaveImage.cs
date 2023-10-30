@@ -7,14 +7,20 @@ namespace PrototypeWPF.Operations
 {
     internal class SaveImage : IOperation
     {
-        private Mat _image;
-
+        private Mat _input;
+        private Mat _output;
         private string _path;
 
-        public Mat Image
+        public Mat Input
         {
-            get { return _image; }
-            set => _image = value;
+            get { return _input; }
+            set => _input = value;
+        }
+
+        public Mat Output
+        {
+            get { return _output; }
+            set => _output = value;
         }
 
         public string Name => "Save";
@@ -34,8 +40,9 @@ namespace PrototypeWPF.Operations
                 _path = saveFileDialog1.FileName;
             }
 
-            Image.SaveImage(_path);
-            return Image;
+            Input.SaveImage(_path);
+            Output = Input;
+            return Output;
         };
 
         public UserControl ParametersView => new UserControl();

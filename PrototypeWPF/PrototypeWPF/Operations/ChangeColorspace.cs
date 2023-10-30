@@ -7,12 +7,19 @@ namespace PrototypeWPF.Operations
 {
     public class ChangeColorspace : IOperation
     {
-        private Mat _image;
+        private Mat _input;
+        private Mat _output;
 
-        public Mat Image
+        public Mat Input
         {
-            get { return _image; }
-            set => _image = value;
+            get { return _input; }
+            set => _input = value;
+        }
+
+        public Mat Output
+        {
+            get { return _output; }
+            set => _output = value;
         }
 
         public ColorConversionCodes ConversionCodes
@@ -27,7 +34,12 @@ namespace PrototypeWPF.Operations
 
         private ColorConversionCodes _conversionCodes;
 
-        public Func<Mat> GetFunc => () => Image.CvtColor(_conversionCodes);
+        public Func<Mat> GetFunc => () =>
+        {
+            Output = Input;
+            Output.CvtColor(_conversionCodes);
+            return Output;
+        };
 
         public UserControl ParametersView => new ChangeColorspaceView(this);
     }

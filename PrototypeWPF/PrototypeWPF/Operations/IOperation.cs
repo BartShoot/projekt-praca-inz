@@ -6,7 +6,9 @@ namespace PrototypeWPF.Operations
 {
     public interface IOperation
     {
-        Mat Image { get; set; }
+        Mat Input { get; set; }
+
+        Mat Output { get; set; }
 
         string Name { get; }
 
