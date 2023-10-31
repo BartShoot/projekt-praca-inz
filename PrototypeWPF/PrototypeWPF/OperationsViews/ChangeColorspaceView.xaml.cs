@@ -11,18 +11,22 @@ namespace PrototypeWPF.OperationsViews
     /// </summary>
     public partial class ChangeColorspaceView : UserControl
     {
-        ChangeColorspace test;
+        ChangeColorspace changeColorspace;
 
         public ChangeColorspaceView(ChangeColorspace function)
         {
-            test = function;
+            changeColorspace = function;
             InitializeComponent();
             ConversionType.ItemsSource = Enum.GetValues(typeof(ColorConversionCodes));
+            if (function.ConversionCodes != null)
+            {
+                ConversionType.SelectedValue = function.ConversionCodes;
+            }
         }
 
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
-            test.ConversionCodes = (ColorConversionCodes)ConversionType.SelectedValue;
+            changeColorspace.ConversionCodes = (ColorConversionCodes)ConversionType.SelectedValue;
         }
     }
 }
