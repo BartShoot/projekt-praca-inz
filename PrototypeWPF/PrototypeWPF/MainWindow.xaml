@@ -15,7 +15,6 @@
             <Image Height="700" x:Name="imageProcessed" />
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <Button Margin="5" Content="Choose image" Click="PickImage" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                 <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged" />
                 <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add" />

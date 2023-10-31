@@ -42,7 +42,7 @@ namespace PrototypeWPF.Operations
             if (op.ShowDialog() == true)
             {
                 _path = op.FileName;
-                _input = new Mat(op.FileName, ImreadModes.Color);
+                _input = new Mat(op.FileName, ImreadModes.Unchanged);
             }
             Output = Input;
             return Output;

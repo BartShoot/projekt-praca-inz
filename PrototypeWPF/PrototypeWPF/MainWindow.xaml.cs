@@ -42,20 +42,23 @@ namespace PrototypeWPF
                 operation.Input = _image;
                 _image = operation.GetFunc();
             }
-
-            var placeholder2 = MatToBitmap(_image);
-            imageProcessed.Source = placeholder2.ToBitmapSourceGrayscale();
-            _image = _backup;
         }
 
         private void AddOperation(object sender, System.Windows.RoutedEventArgs e)
         {
-            _operations.Add(_allOperations[OperationList.SelectedIndex]);
-            PickedOperations.Items.Add((_allOperations[OperationList.SelectedIndex].Name));
+            if (OperationList.SelectedIndex >= 0)
+            {
+                _operations.Add(_allOperations[OperationList.SelectedIndex]);
+                PickedOperations.Items.Add((_allOperations[OperationList.SelectedIndex].Name));
+            }
         }
 
         public Bitmap MatToBitmap(Mat image)
         {
+            if (image == null)
+            {
+                return (Bitmap)Bitmap.FromFile("Resources/test.jpg");
+            }
             return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(image);
         }
 
@@ -63,21 +66,11 @@ namespace PrototypeWPF
         {
             CancelEventArgs closedEventArgs = e;
             _image.Dispose();
-        }
-
-        private void PickImage(object sender, System.Windows.RoutedEventArgs e)
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-                        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-                        "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            _backup.Dispose();
+            foreach (var operation in _operations)
             {
-                _image = new Mat(op.FileName, ImreadModes.Color);
-                _backup = _image;
-                var placeholder = MatToBitmap(_image);
-                imageDisplay.Source = placeholder.ToBitmapSourceBGR();
+                operation.Input.Dispose();
+                operation.Output.Dispose();
             }
         }
 
@@ -94,17 +87,20 @@ namespace PrototypeWPF
 
             //if (_operations[PickedOperations.SelectedIndex].Output == null)
             //{
-                if (PickedOperations.SelectedIndex == 0)
-                {
-                    _operations[PickedOperations.SelectedIndex].GetFunc();
-                }
-                else
-                {
-                    _operations[PickedOperations.SelectedIndex].Input = _operations[PickedOperations.SelectedIndex - 1].Output;
-                }
+            if (PickedOperations.SelectedIndex == 0)
+            {
+                _operations[PickedOperations.SelectedIndex].GetFunc();
+            }
+            else
+            {
+                _operations[PickedOperations.SelectedIndex].Input = _operations[PickedOperations.SelectedIndex - 1].Output;
+                _operations[PickedOperations.SelectedIndex].GetFunc();
+            }
             //}
-            imageDisplay.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Input).ToBitmapSourceBGR();
-            imageProcessed.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Output).ToBitmapSourceBGR();
+            var input = _operations[PickedOperations.SelectedIndex].Input;
+            var output = _operations[PickedOperations.SelectedIndex].Output;
+            imageDisplay.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(input));
+            imageProcessed.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(output));
             EditOperation.Content = _operations[PickedOperations.SelectedIndex].ParametersView;
         }
     }
