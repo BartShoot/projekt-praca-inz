@@ -13,8 +13,8 @@ namespace PrototypeWPF.Operations
     {
         private Mat _input;
         private Mat _output;
-        private double _threshold1;
-        private double _threshold2;
+        private double _threshold1 = 100;
+        private double _threshold2 = 127;
 
         public double Threshold2
         {
@@ -27,7 +27,6 @@ namespace PrototypeWPF.Operations
             get { return _threshold1; }
             set { _threshold1 = value; }
         }
-
 
         public Mat Input
         {

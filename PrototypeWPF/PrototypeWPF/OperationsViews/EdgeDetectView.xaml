@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel>
-        <Label Content="Threshold 1"/>
+        <Label Content="Lower threshold"/>
         <TextBox x:Name="Threshold1"/>
-        <Label Content="Threshold 2"/>
+        <Label Content="Higher threshold"/>
         <TextBox x:Name="Threshold2"/>
         <Button Content="Save Changes" Click="SaveChanges"/>
     </StackPanel>
