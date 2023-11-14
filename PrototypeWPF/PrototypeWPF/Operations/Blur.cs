@@ -9,7 +9,14 @@ namespace PrototypeWPF.Operations
     {
         private Mat _input;
         private Mat _output;
-        private int _size = 4;
+        private int _size = 7;
+        private int _strength = 1;
+
+        public int Strength
+        {
+            get => _strength;
+            set => _strength = value;
+        }
 
         public int Size
         {
@@ -36,7 +43,7 @@ namespace PrototypeWPF.Operations
         public Func<Mat> GetFunc => () =>
         {
             Output = Input;
-            Output.Blur(new OpenCvSharp.Size(_size, _size));
+            Output = Output.GaussianBlur(new OpenCvSharp.Size(_size, _size), _strength);
             return Output;
         };
 

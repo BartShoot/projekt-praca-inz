@@ -16,15 +16,15 @@ namespace PrototypeWPF.OperationsViews
         {
             test = function;
             InitializeComponent();
-            // TODO: fix not showing size
-            var test2 = function.Size.ToString();
-            BlurSize.Text += test2;
+            BlurSize.Text += function.Size.ToString();
+            BlurStrength.Text += function.Strength.ToString();
             BlurSize.UpdateLayout();
         }
 
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
             test.Size = Convert.ToInt16(BlurSize.Text);
+            test.Strength = Convert.ToInt32(BlurStrength.Text);
         }
     }
 }
