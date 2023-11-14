@@ -27,6 +27,7 @@ namespace PrototypeWPF
             _allOperations.Add(new Blur());
             _allOperations.Add(new ChangeColorspace());
             _allOperations.Add(new SaveImage());
+            _allOperations.Add(new EdgeDetect());
 
             InitializeComponent();
             for (int i = 0; i < _allOperations.Count; i++)
