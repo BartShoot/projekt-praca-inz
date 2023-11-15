@@ -30,6 +30,7 @@ namespace PrototypeWPF
             _allOperations.Add(new EdgeDetect());
             _allOperations.Add(new Dilation());
             _allOperations.Add(new Resize());
+            _allOperations.Add(new Crop());
 
             InitializeComponent();
             for (int i = 0; i < _allOperations.Count; i++)

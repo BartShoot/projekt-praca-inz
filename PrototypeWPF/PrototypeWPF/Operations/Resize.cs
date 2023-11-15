@@ -49,6 +49,7 @@ namespace PrototypeWPF.Operations
         public Func<Mat> GetFunc => () =>
         {
             Output = Input;
+            // TODO: add options to switch between relative(% of image) and absolute resize + interpolation options
             Output = Output.Resize(new Size(_sizeX, _sizeY), interpolation: InterpolationFlags.Cubic);
             return Output;
         };
