@@ -1,14 +1,11 @@
-﻿using System;
+﻿using OpenCvSharp;
+using PrototypeWPF.Operations;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using OpenCvSharp;
-using PrototypeWPF.Operations;
 
 namespace PrototypeWPF.OperationsViews
 {
-    /// <summary>
-    /// Interaction logic for ColorToGrayscale.xaml
-    /// </summary>
     public partial class ChangeColorspaceView : UserControl
     {
         ChangeColorspace changeColorspace;

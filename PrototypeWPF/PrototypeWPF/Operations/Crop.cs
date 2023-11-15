@@ -1,10 +1,6 @@
 ﻿using OpenCvSharp;
 using PrototypeWPF.OperationsViews;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace PrototypeWPF.Operations
@@ -29,13 +25,13 @@ namespace PrototypeWPF.Operations
             get { return _width; }
             set { _width = value; }
         }
-        
+
         public int StartY
         {
             get { return _startY; }
             set { _startY = value; }
         }
-        
+
         public int StartX
         {
             get { return _startX; }
@@ -48,7 +44,7 @@ namespace PrototypeWPF.Operations
             get { return _output; }
             set { _output = value; }
         }
-        
+
         public Mat Input
         {
             get { return _input; }

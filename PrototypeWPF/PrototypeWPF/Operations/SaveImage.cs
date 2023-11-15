@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Controls;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using OpenCvSharp;
+using System;
+using System.Windows.Controls;
 
 namespace PrototypeWPF.Operations
 {

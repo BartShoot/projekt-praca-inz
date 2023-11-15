@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using PrototypeWPF.Operations;
 using PrototypeWPF.Utilities;
 using System.Collections.Generic;
