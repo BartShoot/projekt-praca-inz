@@ -103,8 +103,8 @@ namespace PrototypeWPF
             //}
             var input = _operations[PickedOperations.SelectedIndex].Input;
             var output = _operations[PickedOperations.SelectedIndex].Output;
-            imageDisplay.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(input));
-            imageProcessed.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(output));
+            //imageDisplay.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(input));
+            //imageProcessed.Source = BitmapExtensions.ToBitmapSourceBGR(MatToBitmap(output));
             EditOperation.Content = _operations[PickedOperations.SelectedIndex].ParametersView;
         }
     }
