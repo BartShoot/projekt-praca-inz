@@ -8,6 +8,7 @@ namespace PrototypeWPF.Operations
     public class Blur : IOperation
     {
         private Mat _input;
+
         private Mat _output;
         private int _size = 4;
 

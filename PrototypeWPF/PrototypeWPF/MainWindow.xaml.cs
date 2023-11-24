@@ -3,6 +3,7 @@ using OpenCvSharp;
 using PrototypeWPF.Operations;
 using PrototypeWPF.Utilities;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 
@@ -19,6 +20,7 @@ namespace PrototypeWPF
         Mat _image = new Mat();
         Mat _backup = new Mat();
 
+
         public MainWindow()
         {
             this.Closing += WindowClosingEventHandler;
@@ -27,8 +29,9 @@ namespace PrototypeWPF
             _allOperations.Add(new Blur());
             _allOperations.Add(new ChangeColorspace());
             _allOperations.Add(new SaveImage());
-
+            
             InitializeComponent();
+
             for (int i = 0; i < _allOperations.Count; i++)
             {
                 OperationList.Items.Add(_allOperations[i].Name);
@@ -44,7 +47,7 @@ namespace PrototypeWPF
             }
 
             var placeholder2 = MatToBitmap(_image);
-            imageProcessed.Source = placeholder2.ToBitmapSourceGrayscale();
+            //imageProcessed.Source = placeholder2.ToBitmapSourceGrayscale();
             _image = _backup;
         }
 
@@ -77,7 +80,7 @@ namespace PrototypeWPF
                 _image = new Mat(op.FileName, ImreadModes.Color);
                 _backup = _image;
                 var placeholder = MatToBitmap(_image);
-                imageDisplay.Source = placeholder.ToBitmapSourceBGR();
+                //imageDisplay.Source = placeholder.ToBitmapSourceBGR();
             }
         }
 
@@ -103,8 +106,8 @@ namespace PrototypeWPF
                     _operations[PickedOperations.SelectedIndex].Input = _operations[PickedOperations.SelectedIndex - 1].Output;
                 }
             //}
-            imageDisplay.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Input).ToBitmapSourceBGR();
-            imageProcessed.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Output).ToBitmapSourceBGR();
+            //imageDisplay.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Input).ToBitmapSourceBGR();
+            //imageProcessed.Source = MatToBitmap(_operations[PickedOperations.SelectedIndex].Output).ToBitmapSourceBGR();
             EditOperation.Content = _operations[PickedOperations.SelectedIndex].ParametersView;
         }
     }
