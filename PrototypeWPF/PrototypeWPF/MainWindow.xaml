@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:nodify="clr-namespace:Nodify;assembly=Nodify" 
         xmlns:local="clr-namespace:PrototypeWPF"
-        xmlns:local2="clr-namespace:PrototypeWPF.Operations"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -21,15 +20,35 @@
             <Image Grid.Row="0" x:Name="imageDisplay" />
             <Image Grid.Row="1" x:Name="imageProcessed" />
         </Grid>-->
+
         <nodify:NodifyEditor ItemsSource="{Binding Nodes}">
+
             <nodify:NodifyEditor.DataContext>
                 <local:EditorViewModel/>
             </nodify:NodifyEditor.DataContext>
+
             <nodify:NodifyEditor.ItemTemplate>
-                <DataTemplate DataType="{x:Type local2:IOperation}">
-                    <nodify:Node Header="{Binding Name}"/>
+                <DataTemplate DataType="{x:Type local:NodeViewModel}">
+                    <nodify:Node Header="{Binding Title}" 
+                     Input="{Binding Input}"
+                     Output="{Binding Output}">
+
+                        <nodify:Node.InputConnectorTemplate>
+                            <DataTemplate DataType="{x:Type local:ConnectorViewModel}">
+                                <nodify:NodeInput Header="{Binding Title}"/>
+                            </DataTemplate>
+                        </nodify:Node.InputConnectorTemplate>
+
+                        <nodify:Node.OutputConnectorTemplate>
+                            <DataTemplate DataType="{x:Type local:ConnectorViewModel}">
+                                <nodify:NodeOutput Header="{Binding Title}"/>
+                            </DataTemplate>
+                        </nodify:Node.OutputConnectorTemplate>
+
+                    </nodify:Node>
                 </DataTemplate>
             </nodify:NodifyEditor.ItemTemplate>
+
         </nodify:NodifyEditor>
         <StackPanel Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
