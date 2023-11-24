@@ -5,24 +5,23 @@ using System.Windows.Controls;
 
 namespace PrototypeWPF.Operations
 {
-    public class Blur : IOperation
+    public class EdgeDetect : IOperation
     {
         private Mat _input;
-
         private Mat _output;
-        private int _size = 7;
-        private int _strength = 1;
+        private double _threshold1 = 100;
+        private double _threshold2 = 127;
 
-        public int Strength
+        public double Threshold2
         {
-            get => _strength;
-            set => _strength = value;
+            get { return _threshold2; }
+            set { _threshold2 = value; }
         }
 
-        public int Size
+        public double Threshold1
         {
-            get => _size;
-            set => _size = value;
+            get { return _threshold1; }
+            set { _threshold1 = value; }
         }
 
         public Mat Input
@@ -37,17 +36,17 @@ namespace PrototypeWPF.Operations
             set => _output = value;
         }
 
-        public string Name => "Blur";
+        public string Name => "Edge detect";
 
-        public string Description => "Blur the image";
+        public string Description => "Detect edges using Canny method";
 
         public Func<Mat> GetFunc => () =>
         {
             Output = Input;
-            Output = Output.GaussianBlur(new OpenCvSharp.Size(_size, _size), _strength);
+            Output = Output.Canny(_threshold1, _threshold2);
             return Output;
         };
 
-        public UserControl ParametersView => new BlurView(this);
+        public UserControl ParametersView => new EdgeDetectView(this);
     }
 }

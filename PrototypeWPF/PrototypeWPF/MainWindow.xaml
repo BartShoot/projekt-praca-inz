@@ -13,10 +13,14 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <!--<StackPanel Grid.Column="0" Margin="10">
-            <Image Height="700" x:Name="imageDisplay" />
-            <Image Height="700" x:Name="imageProcessed" />
-        </StackPanel>-->
+        <!--<Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" x:Name="imageDisplay" />
+            <Image Grid.Row="1" x:Name="imageProcessed" />
+        </Grid>-->
         <nodify:NodifyEditor ItemsSource="{Binding Nodes}">
             <nodify:NodifyEditor.DataContext>
                 <local:EditorViewModel/>
@@ -28,7 +32,6 @@
             </nodify:NodifyEditor.ItemTemplate>
         </nodify:NodifyEditor>
         <StackPanel Grid.Column="1">
-            <Button Margin="5" Content="Choose image" Click="PickImage" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                 <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged" />
                 <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add" />
