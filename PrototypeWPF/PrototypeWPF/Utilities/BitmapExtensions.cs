@@ -29,7 +29,7 @@ namespace PrototypeWPF.Utilities
         private static System.Windows.Media.PixelFormat GetPixelFormat(System.Drawing.Imaging.PixelFormat pixelFormat)
             => pixelFormat switch
             {
-                System.Drawing.Imaging.PixelFormat.Format24bppRgb => PixelFormats.Rgb24,
+                System.Drawing.Imaging.PixelFormat.Format24bppRgb => PixelFormats.Bgr24,
                 System.Drawing.Imaging.PixelFormat.Format8bppIndexed => PixelFormats.Gray8,
                 _ => throw new NotSupportedException(),
             };
