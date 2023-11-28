@@ -21,19 +21,37 @@
             <Image Grid.Row="1" x:Name="imageProcessed" />
         </Grid>-->
 
-        <nodify:NodifyEditor ItemsSource="{Binding Nodes}"
+        <nodify:NodifyEditor Name="MyNodifyEditor"
+                             ItemsSource="{Binding Nodes}"
                              Connections="{Binding Connections}"
-                             PendingConnection="{Binding PendingConnection}">
-
+                             PendingConnection="{Binding PendingConnection}"
+                             DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
+                             ContextMenu="{Binding ItemContextMenu}">
+            
             <nodify:NodifyEditor.DataContext>
                 <local:EditorViewModel/>
             </nodify:NodifyEditor.DataContext>
-            
+
+            <nodify:NodifyEditor.ItemContainerStyle>
+                <Style TargetType="{x:Type nodify:ItemContainer}">
+                    <Setter Property="Location" Value="{Binding Location}"/>
+                </Style>
+            </nodify:NodifyEditor.ItemContainerStyle>
+
             <nodify:NodifyEditor.ConnectionTemplate>
                 <DataTemplate DataType="{x:Type local:ConnectionViewModel}">
-                    <nodify:LineConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}"/>
+                    <nodify:CircuitConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" Angle="45" Direction="Forward"/>
                 </DataTemplate>
             </nodify:NodifyEditor.ConnectionTemplate>
+
+            <nodify:NodifyEditor.PendingConnectionTemplate>
+                <DataTemplate DataType="{x:Type local:PendingConnectionViewModel}">
+                    <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
+                                              CompletedCommand="{Binding FinishCommnd}"
+                                              AllowOnlyConnectors="True"
+                                              EnableSnapping="True"/>
+                </DataTemplate>
+            </nodify:NodifyEditor.PendingConnectionTemplate>
 
             <nodify:NodifyEditor.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:NodeViewModel}">
@@ -60,14 +78,9 @@
                     </nodify:Node>
                 </DataTemplate>
             </nodify:NodifyEditor.ItemTemplate>
-            <nodify:NodifyEditor.PendingConnectionTemplate>
-                <DataTemplate DataType="{x:Type local:PendingConnectionViewModel}">
-                    <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
-                                              CompletedCommand="{Binding FinishCommnd}"
-                                              AllowOnlyConnectors="True"/>
-                </DataTemplate>
-            </nodify:NodifyEditor.PendingConnectionTemplate>
+            
         </nodify:NodifyEditor>
+        
         <StackPanel Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                 <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged" />

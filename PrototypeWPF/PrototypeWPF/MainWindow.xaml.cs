@@ -1,6 +1,5 @@
 ﻿using OpenCvSharp;
 using PrototypeWPF.Operations;
-using PrototypeWPF.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
