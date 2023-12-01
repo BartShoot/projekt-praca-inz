@@ -1,4 +1,6 @@
-﻿using PrototypeWPF.Utilities;
+﻿using OpenCvSharp;
+using PrototypeWPF.Operations;
+using PrototypeWPF.Utilities;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -47,9 +49,9 @@ namespace PrototypeWPF
 
     public class ConnectorViewModel : INotifyPropertyChanged
     {
-        private Point _anchor;
+        private System.Windows.Point _anchor;
 
-        public Point Anchor
+        public System.Windows.Point Anchor
         {
             set
             {
@@ -74,6 +76,18 @@ namespace PrototypeWPF
         public string Title { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+        private Mat _image;
+
+        public Mat Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+            }
+        }
+
     }
 
     public class NodeViewModel
@@ -86,9 +100,11 @@ namespace PrototypeWPF
         public ObservableCollection<ConnectorViewModel> Output { get; set; } =
             new ObservableCollection<ConnectorViewModel>();
 
-        private Point _location;
+        private System.Windows.Point _location;
 
-        public Point Location
+        private readonly IOperation operation;
+
+        public System.Windows.Point Location
         {
             get { return _location; }
             set
@@ -99,6 +115,26 @@ namespace PrototypeWPF
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public NodeViewModel(IOperation operation)
+        {
+            this.operation = operation;
+            Title = operation.Name;
+            Input = new ObservableCollection<ConnectorViewModel>()
+                {
+                new ConnectorViewModel()
+                {
+                    Title = "Image"
+                }
+            };
+            Output = new ObservableCollection<ConnectorViewModel>()
+                {
+                new ConnectorViewModel()
+                {
+                    Title = "Image"
+                }
+            };
+        }
     }
 
     public class EditorViewModel
@@ -119,54 +155,20 @@ namespace PrototypeWPF
             addNodeMenuItem.Click += AddNodeMenuItem_Click;
             ItemContextMenu.Items.Add(addNodeMenuItem);
             PendingConnection = new PendingConnectionViewModel(this);
-            var welcome = new NodeViewModel
-            {
-                Title = "Welcome",
-                Input = new ObservableCollection<ConnectorViewModel>
-                {
-                    new ConnectorViewModel
-                    {
-                        Title = "In"
-                    }
-                },
-                Output = new ObservableCollection<ConnectorViewModel>
-                {
-                    new ConnectorViewModel
-                    {
-                        Title = "Out"
-                    }
-                }
-            };
-            Nodes.Add(welcome);
-            var nodify = new NodeViewModel
-            {
-                Title = "To Nodify",
-                Input = new ObservableCollection<ConnectorViewModel>
-                {
-                    new ConnectorViewModel
-                    {
-                        Title = "In"
-                    }
-                }
-            };
-            Nodes.Add(nodify);
-            Connections.Add(new ConnectionViewModel(welcome.Output[0], nodify.Input[0]));
             DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(connector =>
-            {
-                var connection = Connections.First(x => x.Source == connector || x.Target == connector);
-                connection.Source.IsConnected = false;
-                connection.Target.IsConnected = false;
-                Connections.Remove(connection);
-            });
+{
+    var connection = Connections.First(x => x.Source == connector || x.Target == connector);
+    connection.Source.IsConnected = false;
+    connection.Target.IsConnected = false;
+    Connections.Remove(connection);
+});
         }
 
         private void AddNodeMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Nodes.Add(new NodeViewModel
+            Nodes.Add(new NodeViewModel(new Resize())
             {
-                Title = "New",
-                Input = new ObservableCollection<ConnectorViewModel> { new ConnectorViewModel { Title = "in" } },
-                Location = new Point(50, 50)
+                Location = new System.Windows.Point(50, 50)
             });
         }
 
