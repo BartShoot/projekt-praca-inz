@@ -1,5 +1,4 @@
 ﻿using OpenCvSharp;
-using PrototypeWPF.Operations;
 using PrototypeWPF.Utilities;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,6 +6,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using NoodleCV;
+using NoodleCV.OpenCvSharp4.Operations;
+using PrototypeWPF.ViewModels.Operations;
+using Point = System.Windows.Point;
 
 namespace PrototypeWPF
 {
@@ -51,6 +54,15 @@ namespace PrototypeWPF
     {
         private System.Windows.Point _anchor;
 
+        public ConnectorViewModel()
+        {
+        }
+        
+        public ConnectorViewModel(OperationData data)
+        {
+            _data = data;
+        }
+
         public System.Windows.Point Anchor
         {
             set
@@ -76,15 +88,16 @@ namespace PrototypeWPF
         public string Title { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private Mat _image;
+        
+        private OperationData _data;
 
-        public Mat Image
+        public OperationData Data
         {
-            get { return _image; }
+            get { return _data; }
             set
             {
-                _image = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+                _data = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Data)));
             }
         }
 
@@ -94,27 +107,16 @@ namespace PrototypeWPF
     {
         public string Title { get; set; }
 
-        public ObservableCollection<ConnectorViewModel> Input
-        {
-            get => input; set
-            {
-                input = value;
-                if (Output.Count == 0)
-                {
-                    Output.Add(new ConnectorViewModel());
-                }
-                if (Input.Count > 0 && Input[0].Image != null)
-                {
-                    Output[0].Image = operation.GetFunc();
-                }
-            }
-        }
-        public ObservableCollection<ConnectorViewModel> Output { get; set; } =
-            new ObservableCollection<ConnectorViewModel>();
+        public ObservableCollection<ConnectorViewModel> Input { get; set; }
+
+        public ObservableCollection<ConnectorViewModel> Output { get; set; }
 
         private System.Windows.Point _location;
-        private ObservableCollection<ConnectorViewModel> input = new ObservableCollection<ConnectorViewModel>();
-        private readonly IOperation operation;
+
+        public IOperationViewModel OperationViewModel
+        {
+            get;
+        }
 
         public System.Windows.Point Location
         {
@@ -128,24 +130,12 @@ namespace PrototypeWPF
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NodeViewModel(IOperation operation)
+        public NodeViewModel(IOperationViewModel operationViewModel)
         {
-            this.operation = operation;
-            Title = operation.Name;
-            Input = new ObservableCollection<ConnectorViewModel>()
-                {
-                new ConnectorViewModel()
-                {
-                    Title = "Image"
-                }
-            };
-            Output = new ObservableCollection<ConnectorViewModel>()
-                {
-                new ConnectorViewModel()
-                {
-                    Title = "Image"
-                }
-            };
+            OperationViewModel = operationViewModel;
+            Title = operationViewModel.Name;
+            Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x)));
+            Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x)));
         }
     }
 
@@ -189,14 +179,16 @@ namespace PrototypeWPF
 
         private void AddSelectImage_Click(object sender, RoutedEventArgs e)
         {
-            var select = new SelectImage();
-            Nodes.Add(new NodeViewModel(select)
+            var loadImageViewModel = new LoadImageViewModel();
+            loadImageViewModel.LoadImage();
+            
+            Nodes.Add(new NodeViewModel(loadImageViewModel)
             {
                 Output = new ObservableCollection<ConnectorViewModel>()
                 {
                     new ConnectorViewModel()
                     {
-                        Image = select.GetFunc()
+                        Data = loadImageViewModel.Operation.Outputs[0]
                     }
             }
             });
@@ -204,7 +196,7 @@ namespace PrototypeWPF
 
         private void AddResize_Click(object sender, RoutedEventArgs e)
         {
-            Nodes.Add(new NodeViewModel(new Resize()));
+            Nodes.Add(new NodeViewModel(new ResizeViewModel()));
         }
 
         public void Connect(ConnectorViewModel source, ConnectorViewModel target)

@@ -8,18 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <!--<Grid Grid.Column="0" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
-            <Image Grid.Row="0" x:Name="imageDisplay" />
-            <Image Grid.Row="1" x:Name="imageProcessed" />
-        </Grid>-->
 
         <nodify:NodifyEditor Name="MyNodifyEditor"
                              ItemsSource="{Binding Nodes}"
@@ -81,14 +69,5 @@
             
         </nodify:NodifyEditor>
         
-        <StackPanel Grid.Column="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
-                <ComboBox Width="100" x:Name="OperationList" SelectionChanged="OperationList_SelectionChanged" />
-                <Button HorizontalAlignment="Right" Click="AddOperation" Content="Add" />
-            </StackPanel>
-            <ContentControl Margin="5" MinHeight="100" x:Name="EditOperation" />
-            <Button Content="Execute" Margin="5" Click="ExecuteOperations" />
-            <ListBox Margin="5" x:Name="PickedOperations" SelectionChanged="PickedOperations_SelectionChanged" />
-        </StackPanel>
     </Grid>
 </Window>
