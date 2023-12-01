@@ -94,14 +94,26 @@ namespace PrototypeWPF
     {
         public string Title { get; set; }
 
-        public ObservableCollection<ConnectorViewModel> Input { get; set; } =
-            new ObservableCollection<ConnectorViewModel>();
-
+        public ObservableCollection<ConnectorViewModel> Input
+        {
+            get => input; set
+            {
+                input = value;
+                if (Output.Count == 0)
+                {
+                    Output.Add(new ConnectorViewModel());
+                }
+                if (Input.Count > 0 && Input[0].Image != null)
+                {
+                    Output[0].Image = operation.GetFunc();
+                }
+            }
+        }
         public ObservableCollection<ConnectorViewModel> Output { get; set; } =
             new ObservableCollection<ConnectorViewModel>();
 
         private System.Windows.Point _location;
-
+        private ObservableCollection<ConnectorViewModel> input = new ObservableCollection<ConnectorViewModel>();
         private readonly IOperation operation;
 
         public System.Windows.Point Location
@@ -150,26 +162,49 @@ namespace PrototypeWPF
 
         public EditorViewModel()
         {
-            ItemContextMenu = new ContextMenu();
-            MenuItem addNodeMenuItem = new MenuItem { Header = "Add node" };
-            addNodeMenuItem.Click += AddNodeMenuItem_Click;
-            ItemContextMenu.Items.Add(addNodeMenuItem);
+            InitializeMenu();
+
             PendingConnection = new PendingConnectionViewModel(this);
+
             DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(connector =>
-{
-    var connection = Connections.First(x => x.Source == connector || x.Target == connector);
-    connection.Source.IsConnected = false;
-    connection.Target.IsConnected = false;
-    Connections.Remove(connection);
-});
+            {
+                var connection = Connections.First(x => x.Source == connector || x.Target == connector);
+                connection.Source.IsConnected = false;
+                connection.Target.IsConnected = false;
+                Connections.Remove(connection);
+            });
         }
 
-        private void AddNodeMenuItem_Click(object sender, RoutedEventArgs e)
+        private void InitializeMenu()
         {
-            Nodes.Add(new NodeViewModel(new Resize())
+            ItemContextMenu = new ContextMenu();
+            MenuItem addSelectImage = new MenuItem { Header = "Select image" };
+            addSelectImage.Click += AddSelectImage_Click;
+            ItemContextMenu.Items.Add(addSelectImage);
+
+            MenuItem addResize = new MenuItem { Header = "Resize" };
+            addResize.Click += AddResize_Click;
+            ItemContextMenu.Items.Add(addResize);
+        }
+
+        private void AddSelectImage_Click(object sender, RoutedEventArgs e)
+        {
+            var select = new SelectImage();
+            Nodes.Add(new NodeViewModel(select)
             {
-                Location = new System.Windows.Point(50, 50)
+                Output = new ObservableCollection<ConnectorViewModel>()
+                {
+                    new ConnectorViewModel()
+                    {
+                        Image = select.GetFunc()
+                    }
+            }
             });
+        }
+
+        private void AddResize_Click(object sender, RoutedEventArgs e)
+        {
+            Nodes.Add(new NodeViewModel(new Resize()));
         }
 
         public void Connect(ConnectorViewModel source, ConnectorViewModel target)
