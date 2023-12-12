@@ -5,69 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:nodify="clr-namespace:Nodify;assembly=Nodify" 
         xmlns:local="clr-namespace:PrototypeWPF"
+        xmlns:views="clr-namespace:PrototypeWPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
-        <nodify:NodifyEditor Name="MyNodifyEditor"
-                             ItemsSource="{Binding Nodes}"
-                             Connections="{Binding Connections}"
-                             PendingConnection="{Binding PendingConnection}"
-                             DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
-                             ContextMenu="{Binding ItemContextMenu}">
-            
-            <nodify:NodifyEditor.DataContext>
-                <local:EditorViewModel/>
-            </nodify:NodifyEditor.DataContext>
-
-            <nodify:NodifyEditor.ItemContainerStyle>
-                <Style TargetType="{x:Type nodify:ItemContainer}">
-                    <Setter Property="Location" Value="{Binding Location}"/>
-                </Style>
-            </nodify:NodifyEditor.ItemContainerStyle>
-
-            <nodify:NodifyEditor.ConnectionTemplate>
-                <DataTemplate DataType="{x:Type local:ConnectionViewModel}">
-                    <nodify:CircuitConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" Angle="45" Direction="Forward"/>
-                </DataTemplate>
-            </nodify:NodifyEditor.ConnectionTemplate>
-
-            <nodify:NodifyEditor.PendingConnectionTemplate>
-                <DataTemplate DataType="{x:Type local:PendingConnectionViewModel}">
-                    <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
-                                              CompletedCommand="{Binding FinishCommnd}"
-                                              AllowOnlyConnectors="True"
-                                              EnableSnapping="True"/>
-                </DataTemplate>
-            </nodify:NodifyEditor.PendingConnectionTemplate>
-
-            <nodify:NodifyEditor.ItemTemplate>
-                <DataTemplate DataType="{x:Type local:NodeViewModel}">
-                    <nodify:Node Header="{Binding Title}" 
-                     Input="{Binding Input}"
-                     Output="{Binding Output}">
-
-                        <nodify:Node.InputConnectorTemplate>
-                            <DataTemplate DataType="{x:Type local:ConnectorViewModel}">
-                                <nodify:NodeInput Header="{Binding Title}"
-                                                  IsConnected="{Binding IsConnected}"
-                                                  Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
-                            </DataTemplate>
-                        </nodify:Node.InputConnectorTemplate>
-
-                        <nodify:Node.OutputConnectorTemplate>
-                            <DataTemplate DataType="{x:Type local:ConnectorViewModel}">
-                                <nodify:NodeOutput Header="{Binding Title}"
-                                                   IsConnected="{Binding IsConnected}"
-                                                   Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
-                            </DataTemplate>
-                        </nodify:Node.OutputConnectorTemplate>
-
-                    </nodify:Node>
-                </DataTemplate>
-            </nodify:NodifyEditor.ItemTemplate>
-            
-        </nodify:NodifyEditor>
-        
+        <views:EditorView DataContext="{Binding EditorViewModel}"/>
     </Grid>
 </Window>
