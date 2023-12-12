@@ -1,16 +1,15 @@
 ﻿using PrototypeWPF.ViewModels;
 
-namespace PrototypeWPF
+namespace PrototypeWPF;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : System.Windows.Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            DataContext = new MainViewModel();
-            InitializeComponent();
-        }
+        DataContext = new MainViewModel();
+        InitializeComponent();
     }
 }

@@ -1,7 +1,8 @@
 namespace NoodleCV;
 
-public class OperationOutput: OperationData
-{ private OperationOutput(Type type): this(null, type)
+public class OperationOutput : OperationData
+{
+    private OperationOutput(Type type) : this(null, type)
     {
     }
     private OperationOutput(object data, Type type)
@@ -14,7 +15,7 @@ public class OperationOutput: OperationData
     {
         return new OperationOutput(typeof(T));
     }
-        
+
     public static OperationOutput Create<T>(T data)
     {
         return new OperationOutput(data, typeof(T));

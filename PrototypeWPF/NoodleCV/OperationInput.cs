@@ -1,24 +1,23 @@
-﻿namespace NoodleCV
-{
-    public class OperationInput: OperationData
-    { 
-        private OperationInput(Type type): this(null, type)
-        {
-        }
-        private OperationInput(object data, Type type)
-        {
-            _data = data;
-            Type = type;
-        }
+﻿namespace NoodleCV;
 
-        public static OperationInput Create<T>()
-        {
-            return new OperationInput(typeof(T));
-        }
-        
-        public static OperationInput Create<T>(T data)
-        {
-            return new OperationInput(data, typeof(T));
-        }
+public class OperationInput : OperationData
+{
+    private OperationInput(Type type) : this(null, type)
+    {
+    }
+    private OperationInput(object data, Type type)
+    {
+        _data = data;
+        Type = type;
+    }
+
+    public static OperationInput Create<T>()
+    {
+        return new OperationInput(typeof(T));
+    }
+
+    public static OperationInput Create<T>(T data)
+    {
+        return new OperationInput(data, typeof(T));
     }
 }
