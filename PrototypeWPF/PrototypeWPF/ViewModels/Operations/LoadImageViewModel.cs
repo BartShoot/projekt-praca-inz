@@ -1,12 +1,11 @@
-using System.Collections.Generic;
-using OpenCvSharp;
-using NoodleCV;
 using Microsoft.Win32;
+using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
+using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class LoadImageViewModel: ViewModelBase, IOperationViewModel
+public class LoadImageViewModel : ViewModelBase, IOperationViewModel
 {
     public LoadImageViewModel()
     {
@@ -19,16 +18,20 @@ public class LoadImageViewModel: ViewModelBase, IOperationViewModel
             Operation.Inputs[0]
         };
     }
-    
+
     private string _imagePath;
     public string ImagePath
     {
         get => _imagePath;
-        set => SetProperty(ref _imagePath, value);
+        set
+        {
+            Operation.Inputs[0].Set(value);
+            SetProperty(ref _imagePath, value);
+        }
     }
 
     public string Name => "Load image";
-    public IOperation Operation { get; } = new LoadImage();
+    public IOperation Operation { get; }
     public IReadOnlyList<OperationData> NodeInput { get; }
     public IReadOnlyList<OperationData> NodeParameter { get; }
 
@@ -44,7 +47,7 @@ public class LoadImageViewModel: ViewModelBase, IOperationViewModel
         {
             ImagePath = op.FileName;
             Operation.Inputs[0].Set(ImagePath);
-            
+
             Operation.Execute();
         }
     }

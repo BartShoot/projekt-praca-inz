@@ -1,14 +1,14 @@
-using NoodleCV;
+﻿using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
 using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class BlurViewModel : ViewModelBase, IOperationViewModel
+public class EdgeDetectViewModel : ViewModelBase, IOperationViewModel
 {
-    public BlurViewModel()
+    public EdgeDetectViewModel()
     {
-        Operation = new Blur();
+        Operation = new EdgeDetect();
         NodeInput = new List<OperationData>
         {
             Operation.Inputs[0]
@@ -19,30 +19,31 @@ public class BlurViewModel : ViewModelBase, IOperationViewModel
             Operation.Inputs[2]
         };
     }
+    private double _thresholdLower;
 
-    private int _size;
-    public int Size
+    public double ThresholdLower
     {
-        get => _size;
+        get => _thresholdLower;
         set
         {
             Operation.Inputs[1].Set(value);
-            SetProperty(ref _size, value);
+            SetProperty(ref _thresholdLower, value);
         }
     }
+    private double _thresholdUpper;
 
-    private int _strength;
-    public int Strength
+    public double ThresholdUpper
     {
-        get => _strength;
+        get => _thresholdUpper;
         set
         {
             Operation.Inputs[2].Set(value);
-            SetProperty(ref _strength, value);
+            SetProperty(ref _thresholdUpper, value);
         }
     }
 
-    public string Name { get; } = "Blur";
+    public string Name { get; } = "Edge detect";
+
     public IOperation Operation { get; }
 
     public IReadOnlyList<OperationData> NodeInput { get; }
