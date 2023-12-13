@@ -1,6 +1,7 @@
 ﻿using NoodleCV;
 using PrototypeWPF.Utilities;
 using PrototypeWPF.ViewModels.Operations;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -146,10 +147,8 @@ public class EditorViewModel
     public PendingConnectionViewModel PendingConnection { get; }
     public ICommand DisconnectConnectorCommand { get; }
     public ContextMenu ItemContextMenu { get; set; }
-
     public EditorViewModel()
     {
-        InitializeMenu();
 
         PendingConnection = new PendingConnectionViewModel(this);
 
@@ -162,9 +161,14 @@ public class EditorViewModel
         });
     }
 
-    private void InitializeMenu()
+    public void InitializeMenu(IReadOnlyList<IOperationViewModel> allOperations)
     {
         ItemContextMenu = new ContextMenu();
+        foreach (var op in allOperations)
+        {
+            MenuItem menuItem = new MenuItem { Header = op.Name };
+            ItemContextMenu.Items.Add(menuItem);
+        }
         MenuItem addSelectImage = new MenuItem { Header = "Select image" };
         addSelectImage.Click += AddSelectImage_Click;
         ItemContextMenu.Items.Add(addSelectImage);

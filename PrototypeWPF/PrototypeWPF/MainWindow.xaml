@@ -4,20 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:nodify="clr-namespace:Nodify;assembly=Nodify" 
-        xmlns:local="clr-namespace:PrototypeWPF"
+        xmlns:local="clr-namespace:PrototypeWPF" xmlns:local1="clr-namespace:PrototypeWPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
         <nodify:NodifyEditor Name="MyNodifyEditor"
-                             ItemsSource="{Binding Nodes}"
-                             Connections="{Binding Connections}"
-                             PendingConnection="{Binding PendingConnection}"
-                             DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
-                             ContextMenu="{Binding ItemContextMenu}">
+                             ItemsSource="{Binding EditorViewModel.Nodes}"
+                             Connections="{Binding EditorViewModel.Connections}"
+                             PendingConnection="{Binding EditorViewModel.PendingConnection}"
+                             DisconnectConnectorCommand="{Binding EditorViewModel.DisconnectConnectorCommand}"
+                             ContextMenu="{Binding EditorViewModel.ItemContextMenu}">
             
             <nodify:NodifyEditor.DataContext>
-                <local:EditorViewModel/>
+                <local1:MainViewModel/>
             </nodify:NodifyEditor.DataContext>
 
             <nodify:NodifyEditor.ItemContainerStyle>

@@ -17,4 +17,8 @@ public class MainViewModel : ViewModelBase
         };
 
     public EditorViewModel EditorViewModel { get; } = new EditorViewModel();
+    public MainViewModel()
+    {
+        EditorViewModel.InitializeMenu(AllOperations);
+    }
 }
