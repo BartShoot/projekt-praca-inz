@@ -167,37 +167,13 @@ public class EditorViewModel
         foreach (var op in allOperations)
         {
             MenuItem menuItem = new MenuItem { Header = op.Name };
+            void add(object sender, RoutedEventArgs e)
+            {
+                Nodes.Add(new NodeViewModel(op));
+            }
+            menuItem.Click += add;
             ItemContextMenu.Items.Add(menuItem);
         }
-        MenuItem addSelectImage = new MenuItem { Header = "Select image" };
-        addSelectImage.Click += AddSelectImage_Click;
-        ItemContextMenu.Items.Add(addSelectImage);
-
-        MenuItem addResize = new MenuItem { Header = "Resize" };
-        addResize.Click += AddResize_Click;
-        ItemContextMenu.Items.Add(addResize);
-    }
-
-    private void AddSelectImage_Click(object sender, RoutedEventArgs e)
-    {
-        var loadImageViewModel = new LoadImageViewModel();
-        loadImageViewModel.LoadImage();
-
-        Nodes.Add(new NodeViewModel(loadImageViewModel)
-        {
-            Output = new ObservableCollection<ConnectorViewModel>()
-            {
-                new ConnectorViewModel()
-                {
-                    Data = loadImageViewModel.Operation.Outputs[0]
-                }
-        }
-        });
-    }
-
-    private void AddResize_Click(object sender, RoutedEventArgs e)
-    {
-        Nodes.Add(new NodeViewModel(new ResizeViewModel()));
     }
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
