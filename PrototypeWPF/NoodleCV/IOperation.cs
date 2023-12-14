@@ -4,6 +4,6 @@
     {
         IReadOnlyList<OperationInput> Inputs { get; }
         IReadOnlyList<OperationOutput> Outputs { get; }
-        void Execute();
+        Result Execute();
     }
 }

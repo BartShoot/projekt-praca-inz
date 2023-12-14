@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.8.1" />
       <PackageReference Include="OpenCvSharp4" Version="4.8.0.20230708" />
     </ItemGroup>
 

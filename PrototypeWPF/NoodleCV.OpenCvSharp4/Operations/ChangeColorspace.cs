@@ -14,12 +14,13 @@ public class ChangeColorspace : IOperation
         OperationOutput.Create<Mat>(),
     };
 
-    public void Execute()
+    public Result Execute()
     {
         var conversionCodes = Inputs[1].Get<ColorConversionCodes>();
 
         var output = Inputs[0].Get<Mat>().CvtColor(conversionCodes);
 
         Outputs[0].Set(output);
+        return new Result();
     }
 }

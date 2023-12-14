@@ -16,7 +16,7 @@ public class Resize : IOperation
         OperationOutput.Create<Mat>()
     };
 
-    public void Execute()
+    public Result Execute()
     {
         var image = Inputs[0].Get<Mat>();
         var sizeX = Inputs[1].Get<int>();
@@ -27,5 +27,6 @@ public class Resize : IOperation
         Cv2.Resize(image, output, new Size(sizeX, sizeY), interpolation: InterpolationFlags.Cubic);
 
         Outputs[0].Set(output);
+        return new Result();
     }
 }

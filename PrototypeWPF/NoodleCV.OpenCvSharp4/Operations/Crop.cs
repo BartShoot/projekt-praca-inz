@@ -7,10 +7,10 @@ public class Crop : IOperation
     public IReadOnlyList<OperationInput> Inputs { get; } = new List<OperationInput>
     {
         OperationInput.Create<Mat>(),
-        OperationInput.Create<int>(),
-        OperationInput.Create<int>(),
-        OperationInput.Create<int>(),
-        OperationInput.Create<int>(),
+        OperationInput.Create(0),
+        OperationInput.Create(0),
+        OperationInput.Create(50),
+        OperationInput.Create(50),
     };
 
     public IReadOnlyList<OperationOutput> Outputs { get; } = new List<OperationOutput>
@@ -18,7 +18,7 @@ public class Crop : IOperation
         OperationOutput.Create<Mat>()
     };
 
-    public void Execute()
+    public Result Execute()
     {
         var startX = Inputs[1].Get<int>();
         var startY = Inputs[2].Get<int>();
@@ -28,6 +28,7 @@ public class Crop : IOperation
         var output = new Mat(Inputs[0].Get<Mat>(), new Rect(startX, startY, width, height));
 
         Outputs[0].Set(output);
+        return new Result();
     }
 }
 

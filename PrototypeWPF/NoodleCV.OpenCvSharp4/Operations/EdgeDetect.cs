@@ -16,7 +16,7 @@ public class EdgeDetect : IOperation
         OperationOutput.Create<Mat>(),
     };
 
-    public void Execute()
+    public Result Execute()
     {
         var thresholdLower = Inputs[1].Get<double>();
         var thresholdUpper = Inputs[2].Get<double>();
@@ -24,5 +24,6 @@ public class EdgeDetect : IOperation
         var output = Inputs[0].Get<Mat>().Canny(thresholdLower, thresholdUpper);
 
         Outputs[0].Set(output);
+        return new Result();
     }
 }

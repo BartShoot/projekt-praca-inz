@@ -14,12 +14,13 @@ public class LoadImage : IOperation
         OperationOutput.Create<Mat>()
     };
 
-    public void Execute()
+    public Result Execute()
     {
         var imagePath = Inputs[0].Get<string>();
 
         var output = Cv2.ImRead(imagePath);
 
         Outputs[0].Set(output);
+        return new Result();
     }
 }

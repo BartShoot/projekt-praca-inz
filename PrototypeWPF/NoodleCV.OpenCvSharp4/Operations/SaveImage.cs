@@ -12,11 +12,12 @@ public class SaveImage : IOperation
 
     public IReadOnlyList<OperationOutput> Outputs { get; } = new List<OperationOutput>();
 
-    public void Execute()
+    public Result Execute()
     {
         var output = Inputs[0].Get<Mat>();
         var imagePath = Inputs[1].Get<string>();
 
         Cv2.ImWrite(imagePath, output);
+        return new Result();
     }
 }
