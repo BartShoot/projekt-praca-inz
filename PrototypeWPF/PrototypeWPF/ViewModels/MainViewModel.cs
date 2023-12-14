@@ -1,3 +1,4 @@
+using PrototypeWPF.ViewModels.Editor;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 

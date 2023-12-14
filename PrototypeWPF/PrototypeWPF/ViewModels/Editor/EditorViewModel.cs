@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace PrototypeWPF;
+namespace PrototypeWPF.ViewModels.Editor;
 
 public class PendingConnectionViewModel
 {
@@ -50,7 +50,7 @@ public class ConnectionViewModel
 
 public class ConnectorViewModel : INotifyPropertyChanged
 {
-    private System.Windows.Point _anchor;
+    private Point _anchor;
 
     public ConnectorViewModel()
     {
@@ -61,7 +61,7 @@ public class ConnectorViewModel : INotifyPropertyChanged
         _data = data;
     }
 
-    public System.Windows.Point Anchor
+    public Point Anchor
     {
         set
         {
@@ -109,14 +109,14 @@ public class NodeViewModel
 
     public ObservableCollection<ConnectorViewModel> Output { get; set; }
 
-    private System.Windows.Point _location;
+    private Point _location;
 
     public IOperationViewModel OperationViewModel
     {
         get;
     }
 
-    public System.Windows.Point Location
+    public Point Location
     {
         get { return _location; }
         set
@@ -137,9 +137,16 @@ public class NodeViewModel
     }
 }
 
-public class EditorViewModel
+public class EditorViewModel: ViewModelBase
 {
     public ObservableCollection<NodeViewModel> Nodes { get; } = new ObservableCollection<NodeViewModel>();
+
+    private ObservableCollection<NodeViewModel> _selectedNodes = new ObservableCollection<NodeViewModel>();
+    public ObservableCollection<NodeViewModel> SelectedNodes
+    {
+        get => _selectedNodes;
+        set => SetProperty(ref _selectedNodes, value);
+    }
 
     public ObservableCollection<ConnectionViewModel> Connections { get; } =
         new ObservableCollection<ConnectionViewModel>();
