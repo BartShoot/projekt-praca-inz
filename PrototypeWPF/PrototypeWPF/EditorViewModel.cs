@@ -164,12 +164,12 @@ public class EditorViewModel
     public void InitializeMenu(IReadOnlyList<IOperationViewModel> allOperations)
     {
         ItemContextMenu = new ContextMenu();
-        foreach (var op in allOperations)
+        foreach (var operation in allOperations)
         {
-            MenuItem menuItem = new MenuItem { Header = op.Name };
+            MenuItem menuItem = new MenuItem { Header = operation.Name };
             void add(object sender, RoutedEventArgs e)
             {
-                Nodes.Add(new NodeViewModel(op));
+                Nodes.Add(new NodeViewModel(operation));
             }
             menuItem.Click += add;
             ItemContextMenu.Items.Add(menuItem);
