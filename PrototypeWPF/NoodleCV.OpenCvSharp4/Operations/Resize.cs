@@ -27,6 +27,6 @@ public class Resize : IOperation
         Cv2.Resize(image, output, new Size(sizeX, sizeY), interpolation: InterpolationFlags.Cubic);
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 }

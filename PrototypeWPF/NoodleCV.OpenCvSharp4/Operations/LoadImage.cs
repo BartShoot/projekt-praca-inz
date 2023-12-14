@@ -21,6 +21,6 @@ public class LoadImage : IOperation
         var output = Cv2.ImRead(imagePath);
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 }

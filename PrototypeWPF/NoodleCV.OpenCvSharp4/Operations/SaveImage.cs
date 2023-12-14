@@ -18,6 +18,6 @@ public class SaveImage : IOperation
         var imagePath = Inputs[1].Get<string>();
 
         Cv2.ImWrite(imagePath, output);
-        return new Result();
+        return Result.Ok();
     }
 }

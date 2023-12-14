@@ -28,7 +28,7 @@ public class Crop : IOperation
         var output = new Mat(Inputs[0].Get<Mat>(), new Rect(startX, startY, width, height));
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 }
 

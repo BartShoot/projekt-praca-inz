@@ -24,6 +24,6 @@ public class EdgeDetect : IOperation
         var output = Inputs[0].Get<Mat>().Canny(thresholdLower, thresholdUpper);
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 }

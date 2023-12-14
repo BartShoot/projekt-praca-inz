@@ -28,13 +28,13 @@ public class Blur : IOperation
         ValidationResult validationResult = ValidateInputs();
         if (!validationResult.IsValid)
         {
-            return new Result(validationResult.Errors);
+            return Result.Error(validationResult.Errors);
         }
 
         Cv2.GaussianBlur(image, output, new Size(size, size), strength);
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 
     private ValidationResult ValidateInputs()

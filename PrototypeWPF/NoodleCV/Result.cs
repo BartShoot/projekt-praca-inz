@@ -5,8 +5,8 @@ namespace NoodleCV
 {
     public class Result
     {
-        public bool Status;
-        public Collection<string> Messages = new();
+        public readonly bool Status;
+        public readonly Collection<string> Errors = new();
 
         public Result()
         {
@@ -16,7 +16,7 @@ namespace NoodleCV
         public Result(string message)
         {
             Status = false;
-            Messages.Add(message);
+            Errors.Add(message);
         }
 
         public Result(List<ValidationFailure> errors)
@@ -24,8 +24,14 @@ namespace NoodleCV
             Status = false;
             foreach (var error in errors)
             {
-                Messages.Add(error.ToString());
+                Errors.Add(error.ToString());
             }
         }
+
+        public static Result Ok() => new Result();
+
+        public static Result Error(string error) => new Result(error);
+
+        public static Result Error(List<ValidationFailure> errors) => new Result(errors);
     }
 }
