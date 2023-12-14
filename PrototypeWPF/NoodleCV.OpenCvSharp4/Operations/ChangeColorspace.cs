@@ -21,6 +21,7 @@ public class ChangeColorspace : IOperation
         var output = Inputs[0].Get<Mat>().CvtColor(conversionCodes);
 
         Outputs[0].Set(output);
+
         return Result.Ok();
     }
 }
