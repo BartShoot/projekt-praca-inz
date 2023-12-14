@@ -17,9 +17,9 @@ public class MainViewModel : ViewModelBase
             new SaveImageViewModel(),
         };
 
-    public EditorViewModel EditorViewModel { get; } = new EditorViewModel();
+    public EditorViewModel EditorViewModel { get; }
     public MainViewModel()
     {
-        EditorViewModel.InitializeMenu(AllOperations);
+        EditorViewModel = new EditorViewModel(AllOperations);
     }
 }

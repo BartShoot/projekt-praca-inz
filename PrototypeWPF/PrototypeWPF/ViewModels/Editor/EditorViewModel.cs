@@ -3,6 +3,7 @@ using PrototypeWPF.Utilities;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -137,9 +138,10 @@ public class NodeViewModel
     }
 }
 
-public class EditorViewModel: ViewModelBase
+public class EditorViewModel : ViewModelBase
 {
-    public ObservableCollection<NodeViewModel> Nodes { get; } = new ObservableCollection<NodeViewModel>();
+    public ObservableCollection<NodeViewModel> Nodes { get; }
+        = new ObservableCollection<NodeViewModel>();
 
     private ObservableCollection<NodeViewModel> _selectedNodes = new ObservableCollection<NodeViewModel>();
     public ObservableCollection<NodeViewModel> SelectedNodes
@@ -153,10 +155,9 @@ public class EditorViewModel: ViewModelBase
 
     public PendingConnectionViewModel PendingConnection { get; }
     public ICommand DisconnectConnectorCommand { get; }
-    public ContextMenu ItemContextMenu { get; set; }
-    public EditorViewModel()
+    public ContextMenu ItemContextMenu { get; } = new ContextMenu();
+    public EditorViewModel(IReadOnlyList<IOperationViewModel> allOperations)
     {
-
         PendingConnection = new PendingConnectionViewModel(this);
 
         DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(connector =>
@@ -166,25 +167,34 @@ public class EditorViewModel: ViewModelBase
             connection.Target.IsConnected = false;
             Connections.Remove(connection);
         });
-    }
 
-    public void InitializeMenu(IReadOnlyList<IOperationViewModel> allOperations)
-    {
-        ItemContextMenu = new ContextMenu();
-        foreach (var operation in allOperations)
-        {
-            MenuItem menuItem = new MenuItem { Header = operation.Name };
-            void add(object sender, RoutedEventArgs e)
-            {
-                Nodes.Add(new NodeViewModel(operation));
-            }
-            menuItem.Click += add;
-            ItemContextMenu.Items.Add(menuItem);
-        }
+        SelectedNodes.CollectionChanged += SelectedNodesChanged;
+        InitializeMenu(allOperations);
     }
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
     {
         Connections.Add(new ConnectionViewModel(source, target));
+    }
+
+    private void InitializeMenu(IReadOnlyList<IOperationViewModel> allOperations)
+    {
+        foreach (var operation in allOperations)
+        {
+            var menuItem = new MenuItem { Header = operation.Name };
+            menuItem.Click += add;
+            ItemContextMenu.Items.Add(menuItem);
+            continue;
+
+            void add(object sender, RoutedEventArgs e)
+            {
+                Nodes.Add(new NodeViewModel(operation));
+            }
+        }
+    }
+
+    private void SelectedNodesChanged(object? sender, NotifyCollectionChangedEventArgs args)
+    {
+
     }
 }
