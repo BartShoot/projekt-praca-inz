@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:nodify="https://miroiu.github.io/nodify"
-             xmlns:prototypeWpf="clr-namespace:PrototypeWPF"
              xmlns:operations="clr-namespace:PrototypeWPF.ViewModels.Operations"
              xmlns:views="clr-namespace:PrototypeWPF.Views"
+             xmlns:editor="clr-namespace:PrototypeWPF.ViewModels.Editor"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -31,13 +31,13 @@
             </nodify:NodifyEditor.ItemContainerStyle>
 
             <nodify:NodifyEditor.ConnectionTemplate>
-                <DataTemplate DataType="{x:Type prototypeWpf:ConnectionViewModel}">
+                <DataTemplate DataType="{x:Type editor:ConnectionViewModel}">
                     <nodify:CircuitConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" Angle="45" Direction="Forward"/>
                 </DataTemplate>
             </nodify:NodifyEditor.ConnectionTemplate>
 
             <nodify:NodifyEditor.PendingConnectionTemplate>
-                <DataTemplate DataType="{x:Type prototypeWpf:PendingConnectionViewModel}">
+                <DataTemplate DataType="{x:Type editor:PendingConnectionViewModel}">
                     <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
                                        CompletedCommand="{Binding FinishCommnd}"
                                        AllowOnlyConnectors="True"
@@ -46,13 +46,13 @@
             </nodify:NodifyEditor.PendingConnectionTemplate>
 
             <nodify:NodifyEditor.ItemTemplate>
-                <DataTemplate DataType="{x:Type prototypeWpf:NodeViewModel}">
+                <DataTemplate DataType="{x:Type editor:NodeViewModel}">
                     <nodify:Node Header="{Binding Title}" 
               Input="{Binding Input}"
               Output="{Binding Output}">
 
                         <nodify:Node.InputConnectorTemplate>
-                            <DataTemplate DataType="{x:Type prototypeWpf:ConnectorViewModel}">
+                            <DataTemplate DataType="{x:Type editor:ConnectorViewModel}">
                                 <nodify:NodeInput Header="{Binding Title}"
                                            IsConnected="{Binding IsConnected}"
                                            Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
@@ -60,7 +60,7 @@
                         </nodify:Node.InputConnectorTemplate>
 
                         <nodify:Node.OutputConnectorTemplate>
-                            <DataTemplate DataType="{x:Type prototypeWpf:ConnectorViewModel}">
+                            <DataTemplate DataType="{x:Type editor:ConnectorViewModel}">
                                 <nodify:NodeOutput Header="{Binding Title}"
                                             IsConnected="{Binding IsConnected}"
                                             Anchor="{Binding Anchor, Mode=OneWayToSource}"/>

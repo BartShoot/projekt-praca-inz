@@ -7,8 +7,8 @@ public class EdgeDetect : IOperation
     public IReadOnlyList<OperationInput> Inputs { get; } = new List<OperationInput>
     {
         OperationInput.Create<Mat>(),
-        OperationInput.Create<double>(),
-        OperationInput.Create<double>(),
+        OperationInput.Create(80),
+        OperationInput.Create(120),
     };
 
     public IReadOnlyList<OperationOutput> Outputs { get; } = new List<OperationOutput>
@@ -24,6 +24,6 @@ public class EdgeDetect : IOperation
         var output = Inputs[0].Get<Mat>().Canny(thresholdLower, thresholdUpper);
 
         Outputs[0].Set(output);
-        return new Result();
+        return Result.Ok();
     }
 }
