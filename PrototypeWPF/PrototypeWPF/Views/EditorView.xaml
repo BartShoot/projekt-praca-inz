@@ -87,6 +87,9 @@
                     <DataTemplate DataType="{x:Type operations:ResizeViewModel}">
                         <views:ResizeView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:BlurViewModel}">
+                        <views:BlurView/>
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>
