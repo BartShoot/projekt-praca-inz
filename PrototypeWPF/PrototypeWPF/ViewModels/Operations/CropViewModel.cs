@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class CropViewModel : ViewModelBase, IOperationViewModel
+public class CropViewModel : OperationViewModel
 {
     public CropViewModel()
     {
+        Name = "Crop";
         Operation = new Crop();
         NodeInput = new List<OperationData>
         {
@@ -64,12 +65,4 @@ public class CropViewModel : ViewModelBase, IOperationViewModel
             SetProperty(ref _height, value);
         }
     }
-
-    public string Name { get; } = "Crop";
-
-    public IOperation Operation { get; }
-
-    public IReadOnlyList<OperationData> NodeInput { get; }
-
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }

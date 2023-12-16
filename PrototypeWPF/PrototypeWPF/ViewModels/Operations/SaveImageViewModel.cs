@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class SaveImageViewModel : ViewModelBase, IOperationViewModel
+public class SaveImageViewModel : OperationViewModel
 {
     public SaveImageViewModel()
     {
+        Name = "Save image";
         Operation = new SaveImage();
         NodeInput = new List<OperationData>
         {
@@ -29,12 +30,4 @@ public class SaveImageViewModel : ViewModelBase, IOperationViewModel
             SetProperty(ref _imagePath, value);
         }
     }
-
-    public string Name => "Save image";
-
-    public IOperation Operation { get; }
-
-    public IReadOnlyList<OperationData> NodeInput { get; }
-
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }

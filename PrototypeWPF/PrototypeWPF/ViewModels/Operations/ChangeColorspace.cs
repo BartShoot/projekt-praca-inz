@@ -5,10 +5,11 @@ using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class ChangeColorspaceViewModel : ViewModelBase, IOperationViewModel
+public class ChangeColorspaceViewModel : OperationViewModel
 {
     public ChangeColorspaceViewModel()
     {
+        Name = "ChangeColorspace";
         Operation = new ChangeColorspace();
         NodeInput = new List<OperationData>
         {
@@ -30,12 +31,4 @@ public class ChangeColorspaceViewModel : ViewModelBase, IOperationViewModel
             SetProperty(ref _conversionCodes, value);
         }
     }
-
-    public string Name { get; } = "ChangeColorspace";
-
-    public IOperation Operation { get; }
-
-    public IReadOnlyList<OperationData> NodeInput { get; }
-
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }

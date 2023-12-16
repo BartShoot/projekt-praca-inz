@@ -4,10 +4,11 @@ using NoodleCV.OpenCvSharp4.Operations;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class ResizeViewModel: ViewModelBase, IOperationViewModel
+public class ResizeViewModel: OperationViewModel
 {    
     public ResizeViewModel()
     {
+        Name = "Resize";
         Operation = new Resize();
         NodeInput = new List<OperationData>
         {
@@ -41,9 +42,4 @@ public class ResizeViewModel: ViewModelBase, IOperationViewModel
             SetProperty(ref _sizeY, value);
         }
     }
-
-    public string Name { get; }  = "Resize";
-    public IOperation Operation { get; } 
-    public IReadOnlyList<OperationData> NodeInput { get; }
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }

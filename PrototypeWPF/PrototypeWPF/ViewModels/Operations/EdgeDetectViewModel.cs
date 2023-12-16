@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class EdgeDetectViewModel : ViewModelBase, IOperationViewModel
+public class EdgeDetectViewModel : OperationViewModel
 {
     public EdgeDetectViewModel()
     {
+        Name = "Edge detect";
         Operation = new EdgeDetect();
         NodeInput = new List<OperationData>
         {
@@ -41,12 +42,4 @@ public class EdgeDetectViewModel : ViewModelBase, IOperationViewModel
             SetProperty(ref _thresholdUpper, value);
         }
     }
-
-    public string Name { get; } = "Edge detect";
-
-    public IOperation Operation { get; }
-
-    public IReadOnlyList<OperationData> NodeInput { get; }
-
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }

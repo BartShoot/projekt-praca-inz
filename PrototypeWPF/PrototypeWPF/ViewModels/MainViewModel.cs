@@ -5,7 +5,7 @@ namespace PrototypeWPF.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public IReadOnlyList<IOperationViewModel> AllOperations { get; } = new List<IOperationViewModel>
+    public IReadOnlyList<OperationViewModel> AllOperations { get; } = new List<OperationViewModel>
         {
             new LoadImageViewModel(),
             new BlurViewModel(),

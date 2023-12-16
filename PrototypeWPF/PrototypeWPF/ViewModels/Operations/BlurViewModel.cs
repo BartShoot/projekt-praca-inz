@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class BlurViewModel : ViewModelBase, IOperationViewModel
+public class BlurViewModel : OperationViewModel
 {
     public BlurViewModel()
     {
+        Name = "Blur";
         Operation = new Blur();
         NodeInput = new List<OperationData>
         {
@@ -41,11 +42,4 @@ public class BlurViewModel : ViewModelBase, IOperationViewModel
             SetProperty(ref _strength, value);
         }
     }
-
-    public string Name { get; } = "Blur";
-    public IOperation Operation { get; }
-
-    public IReadOnlyList<OperationData> NodeInput { get; }
-
-    public IReadOnlyList<OperationData> NodeParameter { get; }
 }
