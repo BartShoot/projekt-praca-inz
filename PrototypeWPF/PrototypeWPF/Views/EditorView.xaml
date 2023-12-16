@@ -5,16 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:nodify="https://miroiu.github.io/nodify"
              xmlns:prototypeWpf="clr-namespace:PrototypeWPF"
+             xmlns:operations="clr-namespace:PrototypeWPF.ViewModels.Operations"
+             xmlns:views="clr-namespace:PrototypeWPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <nodify:NodifyEditor Name="MyNodifyEditor"
-                      ItemsSource="{Binding Nodes}"
-                      Connections="{Binding Connections}"
-                      PendingConnection="{Binding PendingConnection}"
-                      DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
-                      ContextMenu="{Binding ItemContextMenu}"
-                      SelectedItems="{Binding SelectedNodes}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <nodify:NodifyEditor
+                             ItemsSource="{Binding Nodes}"
+                             Connections="{Binding Connections}"
+                             PendingConnection="{Binding PendingConnection}"
+                             DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
+                             ContextMenu="{Binding ItemContextMenu}"
+                             SelectedItem="{Binding SelectedNode}"
+                             SelectedItems="{Binding SelectedNodes}">
 
             <nodify:NodifyEditor.ItemContainerStyle>
                 <Style TargetType="{x:Type nodify:ItemContainer}">
@@ -64,5 +72,23 @@
             </nodify:NodifyEditor.ItemTemplate>
 
         </nodify:NodifyEditor>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ContentControl Content="{Binding SelectedNode.OperationViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type operations:LoadImageViewModel}">
+                        <views:LoadImageView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:ResizeViewModel}">
+                        <views:ResizeView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
     </Grid>
 </UserControl>

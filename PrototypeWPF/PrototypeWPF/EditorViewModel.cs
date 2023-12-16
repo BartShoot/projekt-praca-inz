@@ -1,5 +1,6 @@
 ﻿using NoodleCV;
 using PrototypeWPF.Utilities;
+using PrototypeWPF.ViewModels;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -112,7 +113,7 @@ public class NodeViewModel
 
     private System.Windows.Point _location;
 
-    public IOperationViewModel OperationViewModel
+    public OperationViewModel OperationViewModel
     {
         get;
     }
@@ -129,7 +130,7 @@ public class NodeViewModel
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public NodeViewModel(IOperationViewModel operationViewModel)
+    public NodeViewModel(OperationViewModel operationViewModel)
     {
         OperationViewModel = operationViewModel;
         Title = operationViewModel.Name;
@@ -138,13 +139,18 @@ public class NodeViewModel
     }
 }
 
-public class EditorViewModel
+public class EditorViewModel:ViewModelBase
 {
     public ObservableCollection<NodeViewModel> Nodes { get; } 
         = new ObservableCollection<NodeViewModel>();
 
-    public ObservableCollection<NodeViewModel> SelectedNodes { get; }
-        = new ObservableCollection<NodeViewModel>();
+    private NodeViewModel _selectedNode;
+
+    public NodeViewModel SelectedNode
+    {
+        get => _selectedNode;
+        set => SetProperty(ref _selectedNode, value);
+    }
 
     public ObservableCollection<ConnectionViewModel> Connections { get; } =
         new ObservableCollection<ConnectionViewModel>();
@@ -152,7 +158,7 @@ public class EditorViewModel
     public PendingConnectionViewModel PendingConnection { get; }
     public ICommand DisconnectConnectorCommand { get; }
     public ContextMenu ItemContextMenu { get; } = new ContextMenu();
-    public EditorViewModel(IReadOnlyList<IOperationViewModel> allOperations)
+    public EditorViewModel(IReadOnlyList<OperationViewModel> allOperations)
     {
         PendingConnection = new PendingConnectionViewModel(this);
 
@@ -164,7 +170,6 @@ public class EditorViewModel
             Connections.Remove(connection);
         });
 
-        SelectedNodes.CollectionChanged += SelectedNodesChanged;
         InitializeMenu(allOperations);
     }
     
@@ -173,7 +178,7 @@ public class EditorViewModel
         Connections.Add(new ConnectionViewModel(source, target));
     }
 
-    private void InitializeMenu(IReadOnlyList<IOperationViewModel> allOperations)
+    private void InitializeMenu(IReadOnlyList<OperationViewModel> allOperations)
     {
         foreach (var operation in allOperations)
         {
@@ -187,10 +192,5 @@ public class EditorViewModel
                 Nodes.Add(new NodeViewModel(operation));
             }
         }
-    }
-
-    private void SelectedNodesChanged(object? sender, NotifyCollectionChangedEventArgs args)
-    {
-
     }
 }
