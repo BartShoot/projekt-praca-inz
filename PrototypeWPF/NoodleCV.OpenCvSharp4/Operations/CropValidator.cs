@@ -8,7 +8,7 @@ class CropValidator : AbstractValidator<IReadOnlyList<OperationInput>>
 {
     public CropValidator(Mat mat)
     {
-        RuleFor(list => list[0]).NotNull().WithMessage("No image input");
+        RuleFor(list => list[0].Get<Mat>()).NotNull().WithMessage("No image input");
         RuleFor(list => list[1]).Must(startX => startX.Get<int>() > 0).WithMessage("StartX must be greater than 0");
         RuleFor(list => list[2]).Must(startY => startY.Get<int>() > 0).WithMessage("StartY must be greater than 0");
         RuleFor(list => list[3]).Must(width => width.Get<int>() > 0).WithMessage("Width must be greater than 0");
