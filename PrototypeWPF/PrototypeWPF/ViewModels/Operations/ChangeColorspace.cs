@@ -1,6 +1,7 @@
 ﻿using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
 using OpenCvSharp;
+using System;
 using System.Collections.Generic;
 
 namespace PrototypeWPF.ViewModels.Operations;
@@ -31,4 +32,5 @@ public class ChangeColorspaceViewModel : OperationViewModel
             SetProperty(ref _conversionCodes, value);
         }
     }
+    public Array ColorCodesList { get => Enum.GetValues(typeof(ColorConversionCodes)); }
 }

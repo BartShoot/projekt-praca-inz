@@ -90,6 +90,18 @@
                     <DataTemplate DataType="{x:Type operations:BlurViewModel}">
                         <views:BlurView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:ChangeColorspaceViewModel}">
+                        <views:ChangeColorspaceView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:CropViewModel}">
+                        <views:CropView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:EdgeDetectViewModel}">
+                        <views:EdgeDetectView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type operations:SaveImageViewModel}">
+                        <views:SaveImageView/> 
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>

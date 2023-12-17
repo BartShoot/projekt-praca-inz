@@ -3,11 +3,11 @@
 namespace PrototypeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoadImageView.xaml
+    /// Interaction logic for EdgeDetectView.xaml
     /// </summary>
-    public partial class LoadImageView : UserControl
+    public partial class EdgeDetectView : UserControl
     {
-        public LoadImageView()
+        public EdgeDetectView()
         {
             InitializeComponent();
         }

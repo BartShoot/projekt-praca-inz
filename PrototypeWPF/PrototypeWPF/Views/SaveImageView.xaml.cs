@@ -3,11 +3,11 @@
 namespace PrototypeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoadImageView.xaml
+    /// Interaction logic for SaveImageView.xaml
     /// </summary>
-    public partial class LoadImageView : UserControl
+    public partial class SaveImageView : UserControl
     {
-        public LoadImageView()
+        public SaveImageView()
         {
             InitializeComponent();
         }

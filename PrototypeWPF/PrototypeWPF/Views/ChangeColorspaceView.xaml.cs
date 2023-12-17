@@ -3,11 +3,11 @@
 namespace PrototypeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoadImageView.xaml
+    /// Interaction logic for ChangeColorspaceView.xaml
     /// </summary>
-    public partial class LoadImageView : UserControl
+    public partial class ChangeColorspaceView : UserControl
     {
-        public LoadImageView()
+        public ChangeColorspaceView()
         {
             InitializeComponent();
         }

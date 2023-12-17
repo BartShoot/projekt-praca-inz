@@ -3,11 +3,11 @@
 namespace PrototypeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoadImageView.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class LoadImageView : UserControl
+    public partial class CropView : UserControl
     {
-        public LoadImageView()
+        public CropView()
         {
             InitializeComponent();
         }
