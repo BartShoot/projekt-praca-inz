@@ -1,10 +1,8 @@
 ﻿using NoodleCV;
 using PrototypeWPF.Utilities;
-using PrototypeWPF.ViewModels;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -163,7 +161,10 @@ public class EditorViewModel : ViewModelBase
         DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(connector =>
         {
             var connection = Connections.First(x => x.Source == connector || x.Target == connector);
-            connection.Source.IsConnected = false;
+            if (Connections.Count.Equals(1))
+            {
+                connection.Source.IsConnected = false;
+            }
             connection.Target.IsConnected = false;
             Connections.Remove(connection);
         });
