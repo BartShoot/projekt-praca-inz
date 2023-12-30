@@ -20,6 +20,24 @@ public class EditorViewModel : ViewModelBase
         set => SetProperty(ref _selectedNode, value);
     }
 
+    private NodeViewModel _pinnedNode1;
+
+    public NodeViewModel PinnedNode1
+    {
+        get => _pinnedNode1;
+        set => SetProperty(ref _pinnedNode1, value);
+    }
+    private NodeViewModel _pinnedNode2;
+
+    public NodeViewModel PinnedNode2
+    {
+        get => _pinnedNode2;
+        set => SetProperty(ref _pinnedNode2, value);
+    }
+
+    public ICommand PinNode1 { get; }
+    public ICommand PinNode2 { get; }
+
     public ObservableCollection<ConnectionViewModel> Connections { get; } =
         new ObservableCollection<ConnectionViewModel>();
 
@@ -40,6 +58,9 @@ public class EditorViewModel : ViewModelBase
             connection.Target.IsConnected = false;
             Connections.Remove(connection);
         });
+
+        PinNode1 = new DelegateCommand(() => PinnedNode1 = SelectedNode);
+        PinNode2 = new DelegateCommand(() => PinnedNode2 = SelectedNode);
 
         InitializeMenu(allOperations);
     }
