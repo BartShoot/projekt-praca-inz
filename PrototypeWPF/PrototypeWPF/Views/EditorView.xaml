@@ -15,6 +15,12 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <nodify:NodifyEditor
                              ItemsSource="{Binding Nodes}"
                              Connections="{Binding Connections}"
@@ -104,6 +110,16 @@
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
+        </Grid>
+        
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="4" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="one"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="two" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>
