@@ -6,13 +6,17 @@
              xmlns:nodify="https://miroiu.github.io/nodify"
              xmlns:operations="clr-namespace:PrototypeWPF.ViewModels.Operations"
              xmlns:views="clr-namespace:PrototypeWPF.Views"
-             xmlns:editor="clr-namespace:PrototypeWPF.ViewModels.Editor"
+             xmlns:editor="clr-namespace:PrototypeWPF.ViewModels.Editor" 
+             xmlns:converters="clr-namespace:PrototypeWPF.Utilities"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.InputBindings>
         <KeyBinding Key="D1" Command="{Binding PinNode1}"/>
         <KeyBinding Key="D2" Command="{Binding PinNode2}"/>
     </UserControl.InputBindings>
+    <UserControl.Resources>
+        <converters:NodeViewModelToImageSourceConverter x:Key="NodeViewModelToImage"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -122,8 +126,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode1.Output[0]}"/>
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode2}" Grid.Column="1"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>
