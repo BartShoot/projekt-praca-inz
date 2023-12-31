@@ -126,8 +126,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}"/>
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" Grid.Column="1"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>
