@@ -10,10 +10,6 @@
              xmlns:converters="clr-namespace:PrototypeWPF.Utilities"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.InputBindings>
-        <KeyBinding Key="D1" Command="{Binding PinNode1}"/>
-        <KeyBinding Key="D2" Command="{Binding PinNode2}"/>
-    </UserControl.InputBindings>
     <UserControl.Resources>
         <converters:NodeViewModelToImageSourceConverter x:Key="NodeViewModelToImage"/>
     </UserControl.Resources>
@@ -37,7 +33,11 @@
                              ContextMenu="{Binding ItemContextMenu}"
                              SelectedItem="{Binding SelectedNode}"
                              SelectedItems="{Binding SelectedNodes}">
-
+            <nodify:NodifyEditor.InputBindings>
+                <KeyBinding Key="D1" Command="{Binding PinNode1}"/>
+                <KeyBinding Key="D2" Command="{Binding PinNode2}"/>
+            </nodify:NodifyEditor.InputBindings>
+            
             <nodify:NodifyEditor.ItemContainerStyle>
                 <Style TargetType="{x:Type nodify:ItemContainer}">
                     <Setter Property="Location" Value="{Binding Location}"/>
