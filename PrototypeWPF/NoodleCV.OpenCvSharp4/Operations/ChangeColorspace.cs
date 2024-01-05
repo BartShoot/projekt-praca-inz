@@ -3,13 +3,13 @@
 namespace NoodleCV.OpenCvSharp4.Operations;
 public class ChangeColorspace : IOperation
 {
-    public IReadOnlyList<OperationInput> Inputs { get; } = new List<OperationInput>()
+    public List<OperationInput> Inputs { get; } = new List<OperationInput>()
     {
         OperationInput.Create<Mat>(),
         OperationInput.Create<ColorConversionCodes>()
     };
 
-    public IReadOnlyList<OperationOutput> Outputs { get; } = new List<OperationOutput>()
+    public List<OperationOutput> Outputs { get; } = new List<OperationOutput>()
     {
         OperationOutput.Create<Mat>(),
     };

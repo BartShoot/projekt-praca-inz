@@ -1,10 +1,9 @@
 ﻿using NoodleCV;
-using System.ComponentModel;
 using System.Windows;
 
 namespace PrototypeWPF.ViewModels.Editor;
 
-public class ConnectorViewModel : INotifyPropertyChanged
+public class ConnectorViewModel : ViewModelBase
 {
     private Point _anchor;
 
@@ -14,45 +13,31 @@ public class ConnectorViewModel : INotifyPropertyChanged
 
     public ConnectorViewModel(OperationData data)
     {
-        _data = data;
+        Data = data;
     }
 
     public Point Anchor
     {
-        set
-        {
-            _anchor = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Anchor)));
-        }
         get => _anchor;
+        set => SetProperty(ref _anchor, value);
     }
 
     private bool _isConnected;
 
     public bool IsConnected
     {
-        get { return _isConnected; }
-        set
-        {
-            _isConnected = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsConnected)));
-        }
+        get => _isConnected;
+        set => SetProperty(ref _isConnected, value);
     }
 
     public string Title { get; set; }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     private OperationData _data;
 
     public OperationData Data
     {
-        get { return _data; }
-        set
-        {
-            _data = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Data)));
-        }
+        get => _data;
+        set => SetProperty(ref _data, value);
     }
 
 }

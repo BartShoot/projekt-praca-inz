@@ -2,7 +2,7 @@ using Microsoft.Win32;
 using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
 using PrototypeWPF.Utilities;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace PrototypeWPF.ViewModels.Operations;
@@ -13,10 +13,10 @@ public class LoadImageViewModel : OperationViewModel
     {
         Name = "Load image";
         Operation = new LoadImage();
-        NodeInput = new List<OperationData>
+        NodeInput = new ObservableCollection<OperationData>
         {
         };
-        NodeParameter = new List<OperationData>
+        NodeParameter = new ObservableCollection<OperationData>
         {
             Operation.Inputs[0]
         };
@@ -33,7 +33,7 @@ public class LoadImageViewModel : OperationViewModel
             SetProperty(ref _imagePath, value);
         }
     }
-    
+
     public ICommand LoadImageCommand { get; }
 
     public void LoadImage()

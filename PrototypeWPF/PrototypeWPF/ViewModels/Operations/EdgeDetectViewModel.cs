@@ -1,6 +1,6 @@
 ﻿using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
@@ -10,11 +10,11 @@ public class EdgeDetectViewModel : OperationViewModel
     {
         Name = "Edge detect";
         Operation = new EdgeDetect();
-        NodeInput = new List<OperationData>
+        NodeInput = new ObservableCollection<OperationData>
         {
             Operation.Inputs[0]
         };
-        NodeParameter = new List<OperationData>
+        NodeParameter = new ObservableCollection<OperationData>
         {
             Operation.Inputs[1],
             Operation.Inputs[2]

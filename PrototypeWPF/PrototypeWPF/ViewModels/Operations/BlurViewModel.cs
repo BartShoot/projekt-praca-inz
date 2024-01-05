@@ -1,6 +1,8 @@
 using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
-using System.Collections.Generic;
+using OpenCvSharp;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
@@ -10,15 +12,31 @@ public class BlurViewModel : OperationViewModel
     {
         Name = "Blur";
         Operation = new Blur();
-        NodeInput = new List<OperationData>
+        NodeInput = new ObservableCollection<OperationData>
         {
             Operation.Inputs[0]
         };
-        NodeParameter = new List<OperationData>
+        NodeParameter = new ObservableCollection<OperationData>
         {
             Operation.Inputs[1],
             Operation.Inputs[2]
         };
+
+        foreach (var input in NodeInput)
+        {
+            input.PropertyChanged += HandleChangedNodeInput;
+        }
+
+        NodeInput.CollectionChanged += (sender, e) =>
+        {
+            InputImage = NodeInput[0].Get<Mat>();
+        };
+    }
+
+    private void HandleChangedNodeInput(object? sender, PropertyChangedEventArgs e)
+    {
+        Operation.Inputs[0].Set(NodeInput[0].Get<Mat>());
+        RaisePropertyChanged(nameof(NodeInput));
     }
 
     private int _size;
@@ -32,8 +50,8 @@ public class BlurViewModel : OperationViewModel
         }
     }
 
-    private int _strength;
-    public int Strength
+    private double _strength;
+    public double Strength
     {
         get => _strength;
         set
@@ -42,4 +60,17 @@ public class BlurViewModel : OperationViewModel
             SetProperty(ref _strength, value);
         }
     }
+
+    private Mat _inputImage;
+
+    public Mat InputImage
+    {
+        get => _inputImage;
+        set
+        {
+            Operation.Inputs[0].Set(value);
+            SetProperty(ref _inputImage, value);
+        }
+    }
+
 }

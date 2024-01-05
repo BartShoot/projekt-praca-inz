@@ -2,7 +2,7 @@
 using NoodleCV.OpenCvSharp4.Operations;
 using OpenCvSharp;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
@@ -12,11 +12,11 @@ public class ChangeColorspaceViewModel : OperationViewModel
     {
         Name = "ChangeColorspace";
         Operation = new ChangeColorspace();
-        NodeInput = new List<OperationData>
+        NodeInput = new ObservableCollection<OperationData>
         {
             Operation.Inputs[0]
         };
-        NodeParameter = new List<OperationData>
+        NodeParameter = new ObservableCollection<OperationData>
         {
             Operation.Inputs[1]
         };

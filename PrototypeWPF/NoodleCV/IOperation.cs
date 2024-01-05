@@ -2,8 +2,8 @@
 {
     public interface IOperation
     {
-        IReadOnlyList<OperationInput> Inputs { get; }
-        IReadOnlyList<OperationOutput> Outputs { get; }
+        List<OperationInput> Inputs { get; }
+        List<OperationOutput> Outputs { get; }
         Result Execute();
     }
 }

@@ -2,6 +2,7 @@
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,11 +63,28 @@ public class EditorViewModel : ViewModelBase
         PinNode1 = new DelegateCommand(() => PinnedNode1 = SelectedNode);
         PinNode2 = new DelegateCommand(() => PinnedNode2 = SelectedNode);
 
+        Nodes.CollectionChanged += NodesChangedHandler;
+        Connections.CollectionChanged += ConnectionsChangedHandler;
+
         InitializeMenu(allOperations);
+    }
+
+    private void ConnectionsChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        NodesChangedHandler(sender, e);
+    }
+
+    private void NodesChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        foreach (var node in Nodes)
+        {
+            node.OperationViewModel.Operation.Execute();
+        }
     }
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
     {
+        target.Data = source.Data;
         Connections.Add(new ConnectionViewModel(source, target));
     }
 
@@ -82,6 +100,11 @@ public class EditorViewModel : ViewModelBase
             void add(object sender, RoutedEventArgs e)
             {
                 Nodes.Add(new NodeViewModel(operation));
+                operation.PropertyChanged += (sender, e) =>
+                {
+                    RaisePropertyChanged(nameof(operation));
+                    RaisePropertyChanged(nameof(Nodes));
+                };
             }
         }
     }

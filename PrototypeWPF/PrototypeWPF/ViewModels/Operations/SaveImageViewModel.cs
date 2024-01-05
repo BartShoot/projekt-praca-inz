@@ -2,7 +2,7 @@
 using NoodleCV;
 using NoodleCV.OpenCvSharp4.Operations;
 using PrototypeWPF.Utilities;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace PrototypeWPF.ViewModels.Operations;
@@ -13,11 +13,11 @@ public class SaveImageViewModel : OperationViewModel
     {
         Name = "Save image";
         Operation = new SaveImage();
-        NodeInput = new List<OperationData>
+        NodeInput = new ObservableCollection<OperationData>
         {
             Operation.Inputs[0]
         };
-        NodeParameter = new List<OperationData>
+        NodeParameter = new ObservableCollection<OperationData>
         {
             Operation.Inputs[1]
         };
