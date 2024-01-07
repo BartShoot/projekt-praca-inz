@@ -80,6 +80,8 @@ public class EditorViewModel : ViewModelBase
         {
             node.OperationViewModel.Operation.Execute();
         }
+        RaisePropertyChanged(nameof(PinnedNode1));
+        RaisePropertyChanged(nameof(PinnedNode2));
     }
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
@@ -100,6 +102,7 @@ public class EditorViewModel : ViewModelBase
             void add(object sender, RoutedEventArgs e)
             {
                 Nodes.Add(new NodeViewModel(operation));
+
                 operation.PropertyChanged += (sender, e) =>
                 {
                     RaisePropertyChanged(nameof(operation));

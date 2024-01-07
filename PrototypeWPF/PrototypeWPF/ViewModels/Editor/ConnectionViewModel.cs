@@ -1,6 +1,6 @@
 ﻿namespace PrototypeWPF.ViewModels.Editor;
 
-public class ConnectionViewModel
+public class ConnectionViewModel : ViewModelBase
 {
     public ConnectorViewModel Source { get; }
     public ConnectorViewModel Target { get; }

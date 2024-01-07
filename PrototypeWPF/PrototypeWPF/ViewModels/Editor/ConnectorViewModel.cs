@@ -39,5 +39,4 @@ public class ConnectorViewModel : ViewModelBase
         get => _data;
         set => SetProperty(ref _data, value);
     }
-
 }

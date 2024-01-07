@@ -16,7 +16,11 @@ public class NodeViewModel : ViewModelBase
         set => SetProperty(ref _input, value);
     }
 
-    public ObservableCollection<ConnectorViewModel> Output { get => _output; set => SetProperty(ref _output, value); }
+    public ObservableCollection<ConnectorViewModel> Output
+    {
+        get => _output;
+        set => SetProperty(ref _output, value);
+    }
 
     private System.Windows.Point _location;
     private ObservableCollection<ConnectorViewModel> _input;
@@ -42,22 +46,36 @@ public class NodeViewModel : ViewModelBase
 
         foreach (var item in Input)
         {
-            item.PropertyChanged += InputPropertyChangedHandler;
+            item.PropertyChanged += InputNodeChangedHandler;
         }
-        Input.CollectionChanged += (sender, e) =>
+        foreach (var item in Output)
         {
-            OperationViewModel.NodeInput[0].Set(Input[0].Data.Get<Mat>());
-        };
+            item.PropertyChanged += OutputNodeChangedHandler;
+        }
     }
 
-    private void InputPropertyChangedHandler(object? sender, PropertyChangedEventArgs e)
+    private void OutputNodeChangedHandler(object? sender, PropertyChangedEventArgs e)
     {
-        if (OperationViewModel.NodeInput[0].Get<Mat>() != (sender as ConnectorViewModel).Data.Get<Mat>())
+        RaisePropertyChanged(nameof(Output));
+        RaisePropertyChanged(nameof(NodeViewModel));
+    }
+
+    private void InputChangedHandler(object? sender, PropertyChangedEventArgs e)
+    {
+        OperationViewModel.Execute();
+        RaisePropertyChanged(nameof(NodeViewModel));
+    }
+
+    private void InputNodeChangedHandler(object? sender, PropertyChangedEventArgs e)
+    {
+        if ((sender as ConnectorViewModel) != null && (sender as ConnectorViewModel).IsConnected == true)
         {
-            OperationViewModel.NodeInput[0].Set((sender as ConnectorViewModel).Data.Get<Mat>());
-            OperationViewModel.Execute();
+            if (OperationViewModel.NodeInput.Count > 0)
+            {
+                OperationViewModel.NodeInput[0].Set((sender as ConnectorViewModel).Data.Get<Mat>());
+            }
             RaisePropertyChanged(nameof(Input));
-            RaisePropertyChanged(nameof(NodeViewModel));
+            InputChangedHandler(sender, e);
         }
     }
 }
