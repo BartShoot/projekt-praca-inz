@@ -12,10 +12,8 @@ public abstract class OperationViewModel : ViewModelBase
     public IOperation Operation { get; protected set; }
     public ObservableCollection<OperationData> NodeInput
     {
-        get => _nodeInput; protected set
-        {
-            SetProperty(ref _nodeInput, value);
-        }
+        get => _nodeInput;
+        protected set => SetProperty(ref _nodeInput, value);
     }
     public ObservableCollection<OperationData> NodeParameter { get => _nodeParameter; protected set => SetProperty(ref _nodeParameter, value); }
     public void Execute()
