@@ -10,7 +10,6 @@ public class ChangeColorspaceViewModel : OperationViewModel
 {
     public ChangeColorspaceViewModel()
     {
-        Name = "ChangeColorspace";
         Operation = new ChangeColorspace();
         NodeInput = new ObservableCollection<OperationData>
         {

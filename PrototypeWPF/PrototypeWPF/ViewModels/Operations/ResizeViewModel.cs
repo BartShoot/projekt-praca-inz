@@ -8,7 +8,6 @@ public class ResizeViewModel : OperationViewModel
 {
     public ResizeViewModel()
     {
-        Name = "Resize";
         Operation = new Resize();
         NodeInput = new ObservableCollection<OperationData>
         {

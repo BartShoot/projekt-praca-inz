@@ -11,7 +11,6 @@ public class LoadImageViewModel : OperationViewModel
 {
     public LoadImageViewModel()
     {
-        Name = "Load image";
         Operation = new LoadImage();
         NodeInput = new ObservableCollection<OperationData>
         {

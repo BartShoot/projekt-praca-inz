@@ -11,7 +11,6 @@ public class SaveImageViewModel : OperationViewModel
 {
     public SaveImageViewModel()
     {
-        Name = "Save image";
         Operation = new SaveImage();
         NodeInput = new ObservableCollection<OperationData>
         {

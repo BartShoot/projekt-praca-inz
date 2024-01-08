@@ -8,7 +8,6 @@ public class EdgeDetectViewModel : OperationViewModel
 {
     public EdgeDetectViewModel()
     {
-        Name = "Edge detect";
         Operation = new EdgeDetect();
         NodeInput = new ObservableCollection<OperationData>
         {

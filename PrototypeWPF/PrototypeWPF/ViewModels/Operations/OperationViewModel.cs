@@ -7,8 +7,6 @@ public abstract class OperationViewModel : ViewModelBase
 {
     private ObservableCollection<OperationData> _nodeInput;
     private ObservableCollection<OperationData> _nodeParameter;
-
-    public string Name { get; protected set; }
     public IOperation Operation { get; protected set; }
     public ObservableCollection<OperationData> NodeInput
     {

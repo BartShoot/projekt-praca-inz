@@ -1,4 +1,5 @@
-﻿using PrototypeWPF.Utilities;
+﻿using PrototypeWPF.Model;
+using PrototypeWPF.Utilities;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,7 +46,7 @@ public class EditorViewModel : ViewModelBase
     public PendingConnectionViewModel PendingConnection { get; }
     public ICommand DisconnectConnectorCommand { get; }
     public ContextMenu ItemContextMenu { get; } = new ContextMenu();
-    public EditorViewModel(IReadOnlyList<OperationViewModel> allOperations)
+    public EditorViewModel(IReadOnlyList<OperationDescriptor> allOperations)
     {
         PendingConnection = new PendingConnectionViewModel(this);
 
@@ -90,7 +91,7 @@ public class EditorViewModel : ViewModelBase
         Connections.Add(new ConnectionViewModel(source, target));
     }
 
-    private void InitializeMenu(IReadOnlyList<OperationViewModel> allOperations)
+    private void InitializeMenu(IReadOnlyList<OperationDescriptor> allOperations)
     {
         foreach (var operation in allOperations)
         {
@@ -101,9 +102,10 @@ public class EditorViewModel : ViewModelBase
 
             void add(object sender, RoutedEventArgs e)
             {
-                Nodes.Add(new NodeViewModel(operation));
+                var viewModel = operation.CreateViewModel();
+                Nodes.Add(new NodeViewModel(operation.Name, viewModel));
 
-                operation.PropertyChanged += (sender, e) =>
+                viewModel.PropertyChanged += (sender, e) =>
                 {
                     RaisePropertyChanged(nameof(operation));
                     RaisePropertyChanged(nameof(Nodes));

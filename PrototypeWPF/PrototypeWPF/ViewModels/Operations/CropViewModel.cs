@@ -8,7 +8,6 @@ public class CropViewModel : OperationViewModel
 {
     public CropViewModel()
     {
-        Name = "Crop";
         Operation = new Crop();
         NodeInput = new ObservableCollection<OperationData>
         {

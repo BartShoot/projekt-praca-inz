@@ -37,10 +37,10 @@ public class NodeViewModel : ViewModelBase
         set => SetProperty(ref _location, value);
     }
 
-    public NodeViewModel(OperationViewModel operationViewModel)
+    public NodeViewModel(string name, OperationViewModel operationViewModel)
     {
+        Title = name;
         OperationViewModel = operationViewModel;
-        Title = operationViewModel.Name;
         Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x)));
         Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x)));
 

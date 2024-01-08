@@ -10,7 +10,6 @@ public class BlurViewModel : OperationViewModel
 {
     public BlurViewModel()
     {
-        Name = "Blur";
         Operation = new Blur();
         NodeInput = new ObservableCollection<OperationData>
         {
