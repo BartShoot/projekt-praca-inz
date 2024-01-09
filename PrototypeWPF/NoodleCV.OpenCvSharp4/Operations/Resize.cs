@@ -39,7 +39,7 @@ public class Resize : IOperation
     }
     private ValidationResult ValidateInputs()
     {
-        var validator = new CropValidator(Inputs[0].Get<Mat>());
+        var validator = new ResizeValidator(Inputs[0].Get<Mat>());
         return validator.Validate(Inputs);
     }
 
