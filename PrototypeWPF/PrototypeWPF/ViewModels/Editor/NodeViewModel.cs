@@ -37,13 +37,13 @@ public class NodeViewModel : ViewModelBase
         set => SetProperty(ref _location, value);
     }
 
-    public NodeViewModel(string name, OperationViewModel operationViewModel)
+    public NodeViewModel(string name, OperationViewModel operationViewModel, System.Windows.Point placement)
     {
         Title = name;
         OperationViewModel = operationViewModel;
         Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x)));
         Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x)));
-
+        Location = placement;
         foreach (var item in Input)
         {
             item.PropertyChanged += InputNodeChangedHandler;

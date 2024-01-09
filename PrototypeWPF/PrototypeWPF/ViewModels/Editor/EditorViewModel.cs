@@ -1,6 +1,5 @@
 ﻿using PrototypeWPF.Model;
 using PrototypeWPF.Utilities;
-using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -102,14 +101,19 @@ public class EditorViewModel : ViewModelBase
 
             void add(object sender, RoutedEventArgs e)
             {
-                var viewModel = operation.CreateViewModel();
-                Nodes.Add(new NodeViewModel(operation.Name, viewModel));
-
-                viewModel.PropertyChanged += (sender, e) =>
+                if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
                 {
-                    RaisePropertyChanged(nameof(operation));
-                    RaisePropertyChanged(nameof(Nodes));
-                };
+                    var target = contextMenu.PlacementTarget; // This is your ListView in this case
+                    var mousePositionRelativeToTarget = Mouse.GetPosition(target);
+                    var viewModel = operation.CreateViewModel();
+                    Nodes.Add(new NodeViewModel(operation.Name, viewModel, mousePositionRelativeToTarget));
+
+                    viewModel.PropertyChanged += (sender, e) =>
+                    {
+                        RaisePropertyChanged(nameof(operation));
+                        RaisePropertyChanged(nameof(Nodes));
+                    };
+                }
             }
         }
     }
