@@ -1,4 +1,5 @@
-﻿using OpenCvSharp;
+﻿using FluentValidation.Results;
+using OpenCvSharp;
 
 namespace NoodleCV.OpenCvSharp4.Operations;
 
@@ -21,9 +22,21 @@ public class EdgeDetect : IOperation
         var thresholdLower = Inputs[1].Get<double>();
         var thresholdUpper = Inputs[2].Get<double>();
 
-        var output = Inputs[0].Get<Mat>().Canny(thresholdLower, thresholdUpper);
+        ValidationResult result = ValidateInputs();
+        if (!result.IsValid)
+        {
+            return Result.Error(result.Errors);
+        }
 
+        var output = Inputs[0].Get<Mat>().Canny(thresholdLower, thresholdUpper);
         Outputs[0].Set(output);
         return Result.Ok();
     }
+
+    private ValidationResult ValidateInputs()
+    {
+        var validator = new EdgeDetectValidator();
+        return validator.Validate(Inputs);
+    }
+
 }

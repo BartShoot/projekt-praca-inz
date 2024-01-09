@@ -26,10 +26,10 @@ public class SaveImage : IOperation
         Cv2.ImWrite(imagePath, output);
         return Result.Ok();
     }
+
     private ValidationResult ValidateInputs()
     {
         var validator = new SaveImageValidator();
         return validator.Validate(Inputs);
     }
-
 }
