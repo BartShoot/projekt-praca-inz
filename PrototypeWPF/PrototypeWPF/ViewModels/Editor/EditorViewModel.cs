@@ -38,6 +38,7 @@ public class EditorViewModel : ViewModelBase
 
     public ICommand PinNode1 { get; }
     public ICommand PinNode2 { get; }
+    public ICommand DeleteSelected { get; }
 
     public ObservableCollection<ConnectionViewModel> Connections { get; } =
         new ObservableCollection<ConnectionViewModel>();
@@ -62,6 +63,7 @@ public class EditorViewModel : ViewModelBase
 
         PinNode1 = new DelegateCommand(() => PinnedNode1 = SelectedNode);
         PinNode2 = new DelegateCommand(() => PinnedNode2 = SelectedNode);
+        DeleteSelected = new DelegateCommand(() => Nodes.Remove(SelectedNode));
 
         Nodes.CollectionChanged += NodesChangedHandler;
         Connections.CollectionChanged += ConnectionsChangedHandler;
