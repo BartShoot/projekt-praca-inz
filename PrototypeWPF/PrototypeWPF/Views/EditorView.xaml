@@ -57,7 +57,7 @@
             <nodify:NodifyEditor.PendingConnectionTemplate>
                 <DataTemplate DataType="{x:Type editor:PendingConnectionViewModel}">
                     <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
-                                       CompletedCommand="{Binding FinishCommnd}"
+                                       CompletedCommand="{Binding FinishCommand}"
                                        AllowOnlyConnectors="True"
                                        EnableSnapping="True"/>
                 </DataTemplate>

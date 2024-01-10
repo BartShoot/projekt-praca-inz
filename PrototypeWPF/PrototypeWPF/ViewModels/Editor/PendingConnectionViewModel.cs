@@ -12,7 +12,7 @@ public class PendingConnectionViewModel
     {
         _editor = editor;
         StartCommand = new DelegateCommand<ConnectorViewModel>(source => _source = source);
-        FinishCommnd = new DelegateCommand<ConnectorViewModel>(target =>
+        FinishCommand = new DelegateCommand<ConnectorViewModel>(target =>
         {
             if (target != null)
             {
@@ -22,5 +22,5 @@ public class PendingConnectionViewModel
     }
 
     public ICommand StartCommand { get; }
-    public ICommand FinishCommnd { get; }
+    public ICommand FinishCommand { get; }
 }
