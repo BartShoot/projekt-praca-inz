@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypeWPF", "PrototypeWPF\PrototypeWPF.csproj", "{8347DFB3-7356-453A-9FE8-4ED5B508C515}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoodleCV", "NoodleCV\NoodleCV.csproj", "{0101F591-AEAF-4948-87B6-3582DE8ED651}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoodleCV", "NoodleCV\NoodleCV.csproj", "{0101F591-AEAF-4948-87B6-3582DE8ED651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoodleCV.OpenCvSharp4", "NoodleCV.OpenCvSharp4\NoodleCV.OpenCvSharp4.csproj", "{4117BD25-662B-4D14-87C7-AA8EE37B41EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoodleCV.OpenCvSharp4", "NoodleCV.OpenCvSharp4\NoodleCV.OpenCvSharp4.csproj", "{4117BD25-662B-4D14-87C7-AA8EE37B41EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
