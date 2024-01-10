@@ -34,9 +34,9 @@
                              SelectedItem="{Binding SelectedNode}"
                              SelectedItems="{Binding SelectedNodes}">
             <nodify:NodifyEditor.InputBindings>
-                <KeyBinding Key="D1" Command="{Binding PinNode1}"/>
-                <KeyBinding Key="D2" Command="{Binding PinNode2}"/>
-                <KeyBinding Key="Delete" Command="{Binding DeleteSelected}"/>
+                <KeyBinding Key="D1" Command="{Binding PinNode1Command}"/>
+                <KeyBinding Key="D2" Command="{Binding PinNode2Command}"/>
+                <KeyBinding Key="Delete" Command="{Binding DeleteSelectedCommand}"/>
             </nodify:NodifyEditor.InputBindings>
             
             <nodify:NodifyEditor.ItemContainerStyle>

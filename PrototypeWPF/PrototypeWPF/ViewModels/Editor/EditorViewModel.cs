@@ -11,8 +11,13 @@ using System.Windows.Input;
 namespace PrototypeWPF.ViewModels.Editor;
 public class EditorViewModel : ViewModelBase
 {
-    public ObservableCollection<NodeViewModel> Nodes { get; }
-        = new ObservableCollection<NodeViewModel>();
+    public ObservableCollection<NodeViewModel> Nodes { get; } = new ObservableCollection<NodeViewModel>();
+
+    public ObservableCollection<ConnectionViewModel> Connections { get; } = new ObservableCollection<ConnectionViewModel>();
+
+    public ContextMenu ItemContextMenu { get; } = new ContextMenu();
+
+    public PendingConnectionViewModel PendingConnection { get; }
 
     private NodeViewModel _selectedNode;
     public NodeViewModel SelectedNode
@@ -22,74 +27,37 @@ public class EditorViewModel : ViewModelBase
     }
 
     private NodeViewModel _pinnedNode1;
-
     public NodeViewModel PinnedNode1
     {
         get => _pinnedNode1;
         set => SetProperty(ref _pinnedNode1, value);
     }
-    private NodeViewModel _pinnedNode2;
 
+    private NodeViewModel _pinnedNode2;
     public NodeViewModel PinnedNode2
     {
         get => _pinnedNode2;
         set => SetProperty(ref _pinnedNode2, value);
     }
 
-    public ICommand PinNode1 { get; }
-    public ICommand PinNode2 { get; }
-    public ICommand DeleteSelected { get; }
-
-    public ObservableCollection<ConnectionViewModel> Connections { get; } =
-        new ObservableCollection<ConnectionViewModel>();
-
-    public PendingConnectionViewModel PendingConnection { get; }
+    public ICommand PinNode1Command { get; }
+    public ICommand PinNode2Command { get; }
+    public ICommand DeleteSelectedCommand { get; }
     public ICommand DisconnectConnectorCommand { get; }
-    public ContextMenu ItemContextMenu { get; } = new ContextMenu();
+
     public EditorViewModel(IReadOnlyList<OperationDescriptor> allOperations)
     {
         PendingConnection = new PendingConnectionViewModel(this);
 
-        DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(connector =>
-        {
-            var connection = Connections.First(x => x.Source == connector || x.Target == connector);
-            if (Connections.Count.Equals(1))
-            {
-                connection.Source.IsConnected = false;
-            }
-            connection.Target.IsConnected = false;
-            Connections.Remove(connection);
-        });
-
-        PinNode1 = new DelegateCommand(() => PinnedNode1 = SelectedNode);
-        PinNode2 = new DelegateCommand(() => PinnedNode2 = SelectedNode);
-        DeleteSelected = new DelegateCommand(() => Nodes.Remove(SelectedNode));
+        DisconnectConnectorCommand = new DelegateCommand<ConnectorViewModel>(DisconnectConnector);
+        DeleteSelectedCommand = new DelegateCommand(DeleteSelected);
+        PinNode1Command = new DelegateCommand(() => PinnedNode1 = SelectedNode);
+        PinNode2Command = new DelegateCommand(() => PinnedNode2 = SelectedNode);
 
         Nodes.CollectionChanged += NodesChangedHandler;
         Connections.CollectionChanged += ConnectionsChangedHandler;
 
         InitializeMenu(allOperations);
-    }
-
-    private void ConnectionsChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        NodesChangedHandler(sender, e);
-    }
-
-    private void NodesChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        foreach (var node in Nodes)
-        {
-            node.OperationViewModel.Operation.Execute();
-        }
-        RaisePropertyChanged(nameof(PinnedNode1));
-        RaisePropertyChanged(nameof(PinnedNode2));
-    }
-
-    public void Connect(ConnectorViewModel source, ConnectorViewModel target)
-    {
-        target.Data = source.Data;
-        Connections.Add(new ConnectionViewModel(source, target));
     }
 
     private void InitializeMenu(IReadOnlyList<OperationDescriptor> allOperations)
@@ -118,5 +86,56 @@ public class EditorViewModel : ViewModelBase
                 }
             }
         }
+    }
+
+    private void DeleteSelected()
+    {
+        foreach (var input in SelectedNode.Input)
+        {
+            if (input.IsConnected)
+            {
+                DisconnectConnectorCommand.Execute(input);
+            }
+        }
+        foreach (var output in SelectedNode.Output)
+        {
+            if (output.IsConnected)
+            {
+                DisconnectConnectorCommand.Execute(output);
+            }
+        }
+        Nodes.Remove(SelectedNode);
+    }
+
+    private void DisconnectConnector(ConnectorViewModel connector)
+    {
+        var connection = Connections.First(x => x.Source == connector || x.Target == connector);
+        if (Connections.Count.Equals(1))
+        {
+            connection.Source.IsConnected = false;
+        }
+        connection.Target.IsConnected = false;
+        Connections.Remove(connection);
+    }
+
+    public void Connect(ConnectorViewModel source, ConnectorViewModel target)
+    {
+        target.Data = source.Data;
+        Connections.Add(new ConnectionViewModel(source, target));
+    }
+
+    private void ConnectionsChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        NodesChangedHandler(sender, e);
+    }
+
+    private void NodesChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        foreach (var node in Nodes)
+        {
+            node.OperationViewModel.Operation.Execute();
+        }
+        RaisePropertyChanged(nameof(PinnedNode1));
+        RaisePropertyChanged(nameof(PinnedNode2));
     }
 }
