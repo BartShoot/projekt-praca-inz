@@ -91,7 +91,8 @@
 
         </nodify:NodifyEditor>
 
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" Width="2" Background="#0e0e0e" />
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" 
+                      Width="2" Background="#0e0e0e" />
         <Grid Grid.Column="2" Grid.RowSpan="3" Background="#1e1e1e">
             <Grid.RowDefinitions>
                 <RowDefinition/>

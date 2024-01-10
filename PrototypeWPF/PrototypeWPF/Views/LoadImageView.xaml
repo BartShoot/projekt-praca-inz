@@ -5,18 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PrototypeWPF.Views"
              mc:Ignorable="d" 
-             Height="50"
-             d:DesignHeight="50" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding ImagePath}"/>
-        <Button 
-            Grid.Column="1" 
-            Margin="5" 
-            Content="..."
-            Command="{Binding LoadImageCommand}"/>
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800">
+        <StackPanel Margin="10">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="5,5"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="File path:"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Text="{Binding ImagePath, Mode=OneWay}" IsReadOnly="True"/>
+                <Button Grid.Column="1" Content="..." Command="{Binding LoadImageCommand}" 
+                        Height="34" HorizontalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+
 </UserControl>

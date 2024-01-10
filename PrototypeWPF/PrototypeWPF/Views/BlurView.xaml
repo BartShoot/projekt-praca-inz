@@ -6,8 +6,17 @@
              xmlns:local="clr-namespace:PrototypeWPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
+    
+    <StackPanel Margin="10">
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="5,5"/>
+            </Style>
+        </StackPanel.Resources>
+        
+        <TextBlock Text="Size:"/>
         <TextBox Text="{Binding Size}"/>
+        <TextBlock Text="Strength:"/>
         <TextBox Text="{Binding Strength}"/>
     </StackPanel> 
 </UserControl>

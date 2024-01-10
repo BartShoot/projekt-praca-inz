@@ -1,7 +1,7 @@
+using PrototypeWPF.Model;
 using PrototypeWPF.ViewModels.Editor;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
-using PrototypeWPF.Model;
 
 namespace PrototypeWPF.ViewModels;
 
@@ -15,6 +15,7 @@ public class MainViewModel : ViewModelBase
             new OperationDescriptor("Crop", () => new CropViewModel()),
             new OperationDescriptor("Edge detect", () => new EdgeDetectViewModel()),
             new OperationDescriptor("Save image", () => new SaveImageViewModel()),
+            new OperationDescriptor("Resize", () => new ResizeViewModel()),
         };
 
     public EditorViewModel EditorViewModel { get; }
