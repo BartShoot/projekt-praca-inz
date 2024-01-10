@@ -135,8 +135,17 @@
             </Grid.ColumnDefinitions>
 
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="2" Background="#0e0e0e" />
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}"/>
+            <Border x:Name="Image1Border" ClipToBounds="True">
+                <Image x:Name="Image1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5, 0.5"
+                       Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="scaleTransform"/>
+                            <TranslateTransform x:Name="translateTransform"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Border>
             
             <TextBlock Text="{Binding PinnedNode1.Title, FallbackValue='Press \&apos;1\&apos; to pin Node preview'}" Foreground="White" Background="#3e000000" 
                        HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>

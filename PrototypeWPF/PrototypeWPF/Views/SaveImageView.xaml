@@ -12,6 +12,8 @@
                     <Setter Property="Margin" Value="5,5"/>
                 </Style>
             </StackPanel.Resources>
+            <TextBlock Text="Save image" FontSize="20" FontWeight="Bold"/>
+        
             <TextBlock Text="File path:"/>
             <Grid>
                 <Grid.ColumnDefinitions>

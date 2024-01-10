@@ -13,7 +13,7 @@
                 <Setter Property="Margin" Value="5,5"/>
             </Style>
         </StackPanel.Resources>
-        
+        <TextBlock Text="Blur" FontSize="20" FontWeight="Bold"/>
         <TextBlock Text="Size:"/>
         <TextBox Text="{Binding Size}"/>
         <TextBlock Text="Strength:"/>
