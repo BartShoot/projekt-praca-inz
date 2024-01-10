@@ -10,29 +10,32 @@
              xmlns:converters="clr-namespace:PrototypeWPF.Utilities"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.Resources>
         <converters:NodeViewModelToImageSourceConverter x:Key="NodeViewModelToImage"/>
     </UserControl.Resources>
-    <Grid>
+
+    <Grid Background="#1e1e1e">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="4"/>
+            <RowDefinition Height="2"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <nodify:NodifyEditor
-                             ItemsSource="{Binding Nodes}"
+        <nodify:NodifyEditor ItemsSource="{Binding Nodes}"
                              Connections="{Binding Connections}"
                              PendingConnection="{Binding PendingConnection}"
                              DisconnectConnectorCommand="{Binding DisconnectConnectorCommand}"
                              ContextMenu="{Binding ItemContextMenu}"
                              SelectedItem="{Binding SelectedNode}"
                              SelectedItems="{Binding SelectedNodes}">
+
             <nodify:NodifyEditor.InputBindings>
                 <KeyBinding Key="D1" Command="{Binding PinNode1Command}"/>
                 <KeyBinding Key="D2" Command="{Binding PinNode2Command}"/>
@@ -88,7 +91,8 @@
 
         </nodify:NodifyEditor>
 
-        <Grid Grid.Column="1">
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" Width="2" Background="#0e0e0e" />
+        <Grid Grid.Column="2" Grid.RowSpan="3" Background="#1e1e1e">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -121,16 +125,26 @@
             </ContentControl>
         </Grid>
         
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="4" />
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2" Background="#0e0e0e" />
         <Grid Grid.Row="2" Background="#1e1e1e">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="2" Background="#0e0e0e" />
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
                    Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}"/>
+            
+            <TextBlock Text="{Binding PinnedNode1.Title, FallbackValue='Press \&apos;1\&apos; to pin Node preview'}" Foreground="White" Background="#3e000000" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>
+            
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" Grid.Column="1"/>
+                   Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" Grid.Column="2"/>
+            
+            <TextBlock Text="{Binding PinnedNode2.Title, FallbackValue='Press \&apos;2\&apos; to pin Node preview'}" Grid.Column="2" Foreground="White" Background="#3e000000" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>
         </Grid>
     </Grid>
 </UserControl>

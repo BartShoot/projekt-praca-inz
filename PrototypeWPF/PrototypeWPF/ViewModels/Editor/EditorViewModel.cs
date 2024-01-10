@@ -73,7 +73,7 @@ public class EditorViewModel : ViewModelBase
             {
                 if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
                 {
-                    var target = contextMenu.PlacementTarget; // This is your ListView in this case
+                    var target = contextMenu.PlacementTarget;
                     var mousePositionRelativeToTarget = Mouse.GetPosition(target);
                     var viewModel = operation.CreateViewModel();
                     Nodes.Add(new NodeViewModel(operation.Name, viewModel, mousePositionRelativeToTarget));
@@ -90,6 +90,15 @@ public class EditorViewModel : ViewModelBase
 
     private void DeleteSelected()
     {
+        if (PinnedNode1 != null && PinnedNode1.Equals(SelectedNode))
+        {
+            PinnedNode1 = null;
+        }
+        if (PinnedNode2 != null && PinnedNode2.Equals(SelectedNode))
+        {
+            PinnedNode2 = null;
+        }
+
         foreach (var input in SelectedNode.Input)
         {
             if (input.IsConnected)
