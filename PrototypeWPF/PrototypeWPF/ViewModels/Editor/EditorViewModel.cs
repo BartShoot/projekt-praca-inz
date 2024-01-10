@@ -11,6 +11,7 @@ using System.Windows.Input;
 namespace PrototypeWPF.ViewModels.Editor;
 public class EditorViewModel : ViewModelBase
 {
+    #region props
     public ObservableCollection<NodeViewModel> Nodes { get; } = new ObservableCollection<NodeViewModel>();
 
     public ObservableCollection<ConnectionViewModel> Connections { get; } = new ObservableCollection<ConnectionViewModel>();
@@ -39,11 +40,14 @@ public class EditorViewModel : ViewModelBase
         get => _pinnedNode2;
         set => SetProperty(ref _pinnedNode2, value);
     }
+    #endregion
 
+    #region commands
     public ICommand PinNode1Command { get; }
     public ICommand PinNode2Command { get; }
     public ICommand DeleteSelectedCommand { get; }
     public ICommand DisconnectConnectorCommand { get; }
+    #endregion
 
     public EditorViewModel(IReadOnlyList<OperationDescriptor> allOperations)
     {
@@ -129,6 +133,8 @@ public class EditorViewModel : ViewModelBase
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
     {
+        if (source.Equals(target))
+            return;
         target.Data = source.Data;
         Connections.Add(new ConnectionViewModel(source, target));
     }
