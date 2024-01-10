@@ -1,5 +1,6 @@
 ﻿using OpenCvSharp;
 using PrototypeWPF.ViewModels.Operations;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace PrototypeWPF.ViewModels.Editor;
 public class NodeViewModel : ViewModelBase
 {
     public string Title { get; set; }
+    public Guid Id { get; private set; }
 
     public ObservableCollection<ConnectorViewModel> Input
     {
@@ -41,8 +43,9 @@ public class NodeViewModel : ViewModelBase
     {
         Title = name;
         OperationViewModel = operationViewModel;
-        Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x)));
-        Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x)));
+        Guid Id = Guid.NewGuid();
+        Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x, Id)));
+        Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x, Id)));
         Location = placement;
         foreach (var item in Input)
         {

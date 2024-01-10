@@ -135,6 +135,8 @@ public class EditorViewModel : ViewModelBase
     {
         if (source.Equals(target))
             return;
+        if (source.Id.Equals(target.Id))
+            return;
         target.Data = source.Data;
         Connections.Add(new ConnectionViewModel(source, target));
     }

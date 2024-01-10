@@ -1,4 +1,5 @@
 ﻿using NoodleCV;
+using System;
 using System.Windows;
 
 namespace PrototypeWPF.ViewModels.Editor;
@@ -7,13 +8,15 @@ public class ConnectorViewModel : ViewModelBase
 {
     private Point _anchor;
 
-    public ConnectorViewModel()
+    public ConnectorViewModel(Guid id)
     {
+        Id = id;
     }
 
-    public ConnectorViewModel(OperationData data)
+    public ConnectorViewModel(OperationData data, Guid id)
     {
         Data = data;
+        Id = id;
     }
 
     public Point Anchor
@@ -30,7 +33,7 @@ public class ConnectorViewModel : ViewModelBase
         set => SetProperty(ref _isConnected, value);
     }
 
-    public string Title { get; set; }
+    public Guid Id { get; set; }
 
     private OperationData _data;
 
