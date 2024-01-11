@@ -19,13 +19,13 @@
     <Grid Background="#1e1e1e">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -100,8 +100,6 @@
         
         <ui:Snackbar x:Name="RootSnackbar" Panel.ZIndex="0" Timeout="5000" />
 
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" 
-                      Width="2" Background="#0e0e0e" />
         <Grid Grid.Column="2" Grid.RowSpan="3" Background="#1e1e1e">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -135,26 +133,18 @@
             </ContentControl>
         </Grid>
 
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2" Background="#0e0e0e" />
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" Background="Transparent"
+                      Width="8" BorderBrush="#0e0e0e" Margin="0,0,-8,0" BorderThickness="1,0,0,0" Panel.ZIndex="10"/>
+
         <Grid Grid.Row="2" Background="#1e1e1e" Panel.ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="2" Background="#0e0e0e" />
-            <Border x:Name="Image1Border" ClipToBounds="True">
-                <Image x:Name="Image1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5, 0.5"
-                       Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform x:Name="scaleTransform"/>
-                            <TranslateTransform x:Name="translateTransform"/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-            </Border>
+            <Image x:Name="Image1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5, 0.5"
+                       Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" />
             
             <TextBlock Text="{Binding PinnedNode1.Title, FallbackValue='Press \&apos;1\&apos; to pin Node preview'}" Foreground="White" Background="#3e000000" 
                        HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>
@@ -164,6 +154,10 @@
             
             <TextBlock Text="{Binding PinnedNode2.Title, FallbackValue='Press \&apos;2\&apos; to pin Node preview'}" Grid.Column="2" Foreground="White" Background="#3e000000" 
                        HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="Transparent"
+                      Width="8" BorderBrush="#0e0e0e" Margin="0,0,-8,0" BorderThickness="1,0,0,0" Panel.ZIndex="10"/>
         </Grid>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="8" BorderBrush="#0e0e0e" Background="Transparent" Margin="-8,0,0,0" BorderThickness="0,0,0,1" Panel.ZIndex="10"/>
     </Grid>
 </UserControl>
