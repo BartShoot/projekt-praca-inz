@@ -2,6 +2,10 @@
 
 public class OperationInput : OperationData
 {
+    public OperationInput()
+    {
+    }
+
     private OperationInput(Type type) : this(null, type)
     {
     }

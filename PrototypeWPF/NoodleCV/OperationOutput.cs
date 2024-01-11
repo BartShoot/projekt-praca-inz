@@ -2,6 +2,10 @@ namespace NoodleCV;
 
 public class OperationOutput : OperationData
 {
+    public OperationOutput()
+    {
+    }
+
     private OperationOutput(Type type) : this(null, type)
     {
     }

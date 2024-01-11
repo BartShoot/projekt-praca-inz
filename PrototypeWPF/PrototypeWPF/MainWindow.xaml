@@ -10,7 +10,7 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         ExtendsContentIntoTitleBar="True"
         WindowStartupLocation="CenterScreen">
-    
+
     <ui:UiWindow.Resources>
         <Image x:Key="Icon" Source="Resources/noodles.ico"/>
         <Style x:Key="CustomMenuItem" TargetType="{x:Type MenuItem}">
@@ -23,8 +23,14 @@
                 </Style>
             </Style.Resources>
         </Style>
-    </ui:UiWindow.Resources>    
-    
+    </ui:UiWindow.Resources>
+    <ui:UiWindow.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding NewFile}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveFile}"/>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OpenFile}"/>
+        
+    </ui:UiWindow.InputBindings>
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -48,7 +54,9 @@
                 
                 <Menu Height="32" Padding="0" Background="Transparent">
                     <MenuItem Header="_File" Style="{StaticResource CustomMenuItem}">
-                        <MenuItem Header="_New file" Command="{Binding NewFile}"/>
+                        <MenuItem Header="_New file" Command="{Binding NewFile}" InputGestureText="Ctrl+N"/>
+                        <MenuItem Header="_Save file" Command="{Binding SaveFile}" InputGestureText="Ctrl+S"/>
+                        <MenuItem Header="_Open file" Command="{Binding OpenFile}" InputGestureText="Ctrl+O"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>        

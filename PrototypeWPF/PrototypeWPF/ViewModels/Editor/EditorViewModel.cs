@@ -1,8 +1,11 @@
-﻿using PrototypeWPF.Model;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using PrototypeWPF.Model;
 using PrototypeWPF.Utilities;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -166,4 +169,65 @@ public class EditorViewModel : ViewModelBase
         Nodes.Clear();
         Connections.Clear();
     }
+
+    public void SaveFile()
+    {
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        saveFileDialog.Filter = "JSON file (*.json)|*.json";
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            var appState = new
+            {
+                this.Nodes,
+                this.Connections,
+                this.SelectedNode,
+                this.PinnedNode1,
+                this.PinnedNode2,
+            };
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+
+            string jsonData = JsonConvert.SerializeObject(appState, Formatting.Indented, serializerSettings);
+            File.WriteAllText(saveFileDialog.FileName, jsonData);
+        };
+    }
+
+    public void OpenFile()
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+        if (openFileDialog.ShowDialog() == true)
+        {
+            string filePath = openFileDialog.FileName;
+            if (!File.Exists(filePath))
+                return;
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+
+            string jsonData = File.ReadAllText(filePath);
+            var appState = JsonConvert.DeserializeObject<AppState>(jsonData, serializerSettings);
+
+            this.Nodes.Clear();
+            foreach (var node in appState.Nodes)
+                this.Nodes.Add(node);
+
+            this.Connections.Clear();
+            foreach (var connection in appState.Connections)
+                this.Connections.Add(connection);
+
+            this.SelectedNode = appState.SelectedNode;
+            this.PinnedNode1 = appState.PinnedNode1;
+            this.PinnedNode2 = appState.PinnedNode2;
+        }
+    }
+
+    private class AppState
+    {
+        public ObservableCollection<NodeViewModel> Nodes { get; set; }
+        public ObservableCollection<ConnectionViewModel> Connections { get; set; }
+        public NodeViewModel SelectedNode { get; set; }
+        public NodeViewModel PinnedNode1 { get; set; }
+        public NodeViewModel PinnedNode2 { get; set; }
+    }
+
 }

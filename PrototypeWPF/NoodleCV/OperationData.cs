@@ -4,6 +4,10 @@ namespace NoodleCV;
 
 public class OperationData : INotifyPropertyChanged
 {
+    public OperationData()
+    {
+    }
+
     protected object _data;
     public Type Type { get; protected set; }
 

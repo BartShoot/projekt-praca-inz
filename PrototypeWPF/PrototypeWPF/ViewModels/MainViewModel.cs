@@ -23,10 +23,14 @@ public class MainViewModel : ViewModelBase
     public EditorViewModel EditorViewModel { get; }
 
     public ICommand NewFile { get; private set; }
+    public ICommand SaveFile { get; private set; }
+    public ICommand OpenFile { get; private set; }
 
     public MainViewModel()
     {
         EditorViewModel = new EditorViewModel(AllOperations);
         NewFile = new DelegateCommand(EditorViewModel.NewFile);
+        SaveFile = new DelegateCommand(EditorViewModel.SaveFile);
+        OpenFile = new DelegateCommand(EditorViewModel.OpenFile);
     }
 }

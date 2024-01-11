@@ -8,9 +8,8 @@ public class ConnectorViewModel : ViewModelBase
 {
     private Point _anchor;
 
-    public ConnectorViewModel(Guid id)
+    public ConnectorViewModel()
     {
-        Id = id;
     }
 
     public ConnectorViewModel(OperationData data, Guid id)
