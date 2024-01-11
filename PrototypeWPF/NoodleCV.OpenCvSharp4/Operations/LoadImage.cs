@@ -25,6 +25,6 @@ public class LoadImage : IOperation
             Outputs[0].Set(output);
             return Result.Ok();
         }
-        return Result.Error("gowno");
+        return Result.Error("No file path selected");
     }
 }
