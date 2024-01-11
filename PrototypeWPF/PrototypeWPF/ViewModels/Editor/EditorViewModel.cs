@@ -58,7 +58,6 @@ public class EditorViewModel : ViewModelBase
         PinNode1Command = new DelegateCommand(() => PinnedNode1 = SelectedNode);
         PinNode2Command = new DelegateCommand(() => PinnedNode2 = SelectedNode);
 
-        Nodes.CollectionChanged += NodesChangedHandler;
         Connections.CollectionChanged += ConnectionsChangedHandler;
 
         InitializeMenu(allOperations);
@@ -68,14 +67,14 @@ public class EditorViewModel : ViewModelBase
     {
         foreach (var operation in allOperations)
         {
-            var menuItem = new MenuItem { Header = operation.Name };
+            var menuItem = new System.Windows.Controls.MenuItem { Header = operation.Name };
             menuItem.Click += add;
             ItemContextMenu.Items.Add(menuItem);
             continue;
 
             void add(object sender, RoutedEventArgs e)
             {
-                if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
+                if (sender is System.Windows.Controls.MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
                 {
                     var target = contextMenu.PlacementTarget;
                     var mousePositionRelativeToTarget = Mouse.GetPosition(target);
@@ -143,14 +142,20 @@ public class EditorViewModel : ViewModelBase
 
     private void ConnectionsChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        NodesChangedHandler(sender, e);
-    }
-
-    private void NodesChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
-    {
         foreach (var node in Nodes)
         {
-            node.OperationViewModel.Operation.Execute();
+            var test = node.OperationViewModel.Operation.Execute();
+            if (test.Status.Equals(false))
+            {
+                string errors = string.Join(", ", test.Errors);
+                errors += '.';
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                var editor = mainWindow.EditorViewName;
+                (editor)?.RootSnackbar.Show(
+                    "Can't calculate " + node.Title, errors,
+                    Wpf.Ui.Common.SymbolRegular.TextBulletListSquareWarning16, Wpf.Ui.Common.ControlAppearance.Danger);
+                break;
+            }
         }
         RaisePropertyChanged(nameof(PinnedNode1));
         RaisePropertyChanged(nameof(PinnedNode2));
