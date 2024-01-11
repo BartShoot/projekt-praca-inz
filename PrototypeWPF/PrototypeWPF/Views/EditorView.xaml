@@ -13,7 +13,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <UserControl.Resources>
-        <converters:NodeViewModelToImageSourceConverter x:Key="NodeViewModelToImage"/>
+        <converters:OperationToImageSourceConverter x:Key="OperationToImage"/>
     </UserControl.Resources>
 
     <Grid Background="#1e1e1e">
@@ -144,13 +144,13 @@
             </Grid.ColumnDefinitions>
 
             <Image x:Name="Image1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5, 0.5"
-                       Source="{Binding PinnedNode1, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" />
+                       Source="{Binding PinnedOperation1.Operation, Mode=OneWay, Converter={StaticResource OperationToImage}}" />
             
             <TextBlock Text="{Binding PinnedNode1.Title, FallbackValue='Press \&apos;1\&apos; to pin Node preview'}" Foreground="White" Background="#3e000000" 
                        HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>
             
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Source="{Binding PinnedNode2, Mode=OneWay, Converter={StaticResource NodeViewModelToImage}}" Grid.Column="2"/>
+                   Source="{Binding PinnedOperation2.Operation, Mode=OneWay, Converter={StaticResource OperationToImage}}" Grid.Column="2"/>
             
             <TextBlock Text="{Binding PinnedNode2.Title, FallbackValue='Press \&apos;2\&apos; to pin Node preview'}" Grid.Column="2" Foreground="White" Background="#3e000000" 
                        HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10, 5"/>

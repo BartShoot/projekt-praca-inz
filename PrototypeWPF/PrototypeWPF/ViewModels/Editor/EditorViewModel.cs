@@ -10,6 +10,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using NoodleCV;
+using PrototypeWPF.ViewModels.Operations;
 
 namespace PrototypeWPF.ViewModels.Editor;
 public class EditorViewModel : ViewModelBase
@@ -34,15 +36,17 @@ public class EditorViewModel : ViewModelBase
     public NodeViewModel PinnedNode1
     {
         get => _pinnedNode1;
-        set => SetProperty(ref _pinnedNode1, value);
+        set => SetProperty(ref _pinnedNode1, value, () => RaisePropertyChanged(nameof(PinnedOperation1)));
     }
+    public OperationViewModel? PinnedOperation1 => PinnedNode1?.OperationViewModel;
 
     private NodeViewModel _pinnedNode2;
     public NodeViewModel PinnedNode2
     {
         get => _pinnedNode2;
-        set => SetProperty(ref _pinnedNode2, value);
+        set => SetProperty(ref _pinnedNode2, value, () => RaisePropertyChanged(nameof(PinnedOperation2)));
     }
+    public OperationViewModel? PinnedOperation2 => PinnedNode2?.OperationViewModel;
     #endregion
 
     #region commands
