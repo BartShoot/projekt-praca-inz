@@ -7,7 +7,8 @@
              xmlns:operations="clr-namespace:PrototypeWPF.ViewModels.Operations"
              xmlns:views="clr-namespace:PrototypeWPF.Views"
              xmlns:editor="clr-namespace:PrototypeWPF.ViewModels.Editor" 
-             xmlns:converters="clr-namespace:PrototypeWPF.Utilities"
+             xmlns:converters="clr-namespace:PrototypeWPF.Utilities" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
@@ -45,12 +46,14 @@
             <nodify:NodifyEditor.ItemContainerStyle>
                 <Style TargetType="{x:Type nodify:ItemContainer}">
                     <Setter Property="Location" Value="{Binding Location}"/>
+                    <Setter Property="BorderBrush" Value="#f2433b"/>
+                    <Setter Property="SelectedBrush" Value="#ffdf65"/>
                 </Style>
             </nodify:NodifyEditor.ItemContainerStyle>
 
             <nodify:NodifyEditor.ConnectionTemplate>
                 <DataTemplate DataType="{x:Type editor:ConnectionViewModel}">
-                    <nodify:CircuitConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" Angle="45" Direction="Forward"/>
+                    <nodify:CircuitConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" Angle="45" Direction="Forward" Stroke="#f2433b"/>
                 </DataTemplate>
             </nodify:NodifyEditor.ConnectionTemplate>
 
@@ -59,21 +62,23 @@
                     <nodify:PendingConnection StartedCommand="{Binding StartCommand}"
                                        CompletedCommand="{Binding FinishCommand}"
                                        AllowOnlyConnectors="True"
-                                       EnableSnapping="True"/>
+                                       EnableSnapping="True"
+                                       Stroke="#f2433b"/>
                 </DataTemplate>
             </nodify:NodifyEditor.PendingConnectionTemplate>
 
             <nodify:NodifyEditor.ItemTemplate>
                 <DataTemplate DataType="{x:Type editor:NodeViewModel}">
                     <nodify:Node Header="{Binding Title}" 
-                                  Input="{Binding Input}"
-                                  Output="{Binding Output}">
+                                 Input="{Binding Input}"
+                                 Output="{Binding Output}">
 
                         <nodify:Node.InputConnectorTemplate>
                             <DataTemplate DataType="{x:Type editor:ConnectorViewModel}">
                                 <nodify:NodeInput Header="{Binding Title}"
                                            IsConnected="{Binding IsConnected}"
-                                           Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
+                                           Anchor="{Binding Anchor, Mode=OneWayToSource}"
+                                           BorderBrush="#f2433b"/>
                             </DataTemplate>
                         </nodify:Node.InputConnectorTemplate>
 
@@ -81,7 +86,8 @@
                             <DataTemplate DataType="{x:Type editor:ConnectorViewModel}">
                                 <nodify:NodeOutput Header="{Binding Title}"
                                             IsConnected="{Binding IsConnected}"
-                                            Anchor="{Binding Anchor, Mode=OneWayToSource}"/>
+                                            Anchor="{Binding Anchor, Mode=OneWayToSource}"
+                                            BorderBrush="#f2433b"/>
                             </DataTemplate>
                         </nodify:Node.OutputConnectorTemplate>
 
@@ -89,7 +95,10 @@
                 </DataTemplate>
             </nodify:NodifyEditor.ItemTemplate>
 
+
         </nodify:NodifyEditor>
+        
+        <ui:Snackbar x:Name="RootSnackbar" Panel.ZIndex="0" Timeout="5000" />
 
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" 
                       Width="2" Background="#0e0e0e" />
@@ -125,9 +134,9 @@
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>
-        
+
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2" Background="#0e0e0e" />
-        <Grid Grid.Row="2" Background="#1e1e1e">
+        <Grid Grid.Row="2" Background="#1e1e1e" Panel.ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2"/>

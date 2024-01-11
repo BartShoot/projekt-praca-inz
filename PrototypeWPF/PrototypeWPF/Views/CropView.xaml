@@ -15,10 +15,10 @@
         </StackPanel.Resources>
         <TextBlock Text="Crop" FontSize="20" FontWeight="Bold"/>
 
-        <TextBlock Text="Size X:"/>
-        <TextBox Text="{Binding SizeX}"/>
-        <TextBlock Text="Size Y:"/>
-        <TextBox Text="{Binding SizeY}"/>
+        <TextBlock Text="Start X:"/>
+        <TextBox Text="{Binding StartX}"/>
+        <TextBlock Text="Start Y:"/>
+        <TextBox Text="{Binding StartY}"/>
         <ui:NavigationSeparator Margin="0,6,0,2"/>
         <TextBlock Text="Width:"/>
         <TextBox Text="{Binding Width}"/>

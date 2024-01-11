@@ -30,9 +30,9 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <Grid>
-            
+
+        <Grid Background="#0e0e0e">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -53,6 +53,6 @@
             </StackPanel>        
         </Grid>
 
-        <views:EditorView DataContext="{Binding EditorViewModel}" Grid.Row="1"/>
+        <views:EditorView x:Name="EditorViewName" DataContext="{Binding EditorViewModel}" Grid.Row="1"/>
     </Grid>
 </ui:UiWindow>
