@@ -1,7 +1,9 @@
 using PrototypeWPF.Model;
+using PrototypeWPF.Utilities;
 using PrototypeWPF.ViewModels.Editor;
 using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace PrototypeWPF.ViewModels;
 
@@ -19,8 +21,12 @@ public class MainViewModel : ViewModelBase
         };
 
     public EditorViewModel EditorViewModel { get; }
+
+    public ICommand NewFile { get; private set; }
+
     public MainViewModel()
     {
         EditorViewModel = new EditorViewModel(AllOperations);
+        NewFile = new DelegateCommand(EditorViewModel.NewFile);
     }
 }

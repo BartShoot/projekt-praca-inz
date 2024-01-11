@@ -45,9 +45,10 @@
                         <Image Source="Resources/noodles.ico" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-6" />
                     </Button.Content>
                 </Button>
+                
                 <Menu Height="32" Padding="0" Background="Transparent">
                     <MenuItem Header="_File" Style="{StaticResource CustomMenuItem}">
-                        <MenuItem Header="_New file"/>
+                        <MenuItem Header="_New file" Command="{Binding NewFile}"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>        

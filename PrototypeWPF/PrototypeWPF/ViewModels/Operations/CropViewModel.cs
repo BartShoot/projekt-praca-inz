@@ -21,25 +21,25 @@ public class CropViewModel : OperationViewModel
             Operation.Inputs[4]
         };
     }
-    private int _sizeX;
-    public int SizeX
+    private int _startX;
+    public int StartX
     {
-        get => _sizeX;
+        get => _startX;
         set
         {
             Operation.Inputs[1].Set(value);
-            SetProperty(ref _sizeX, value);
+            SetProperty(ref _startX, value);
         }
     }
 
-    private int _sizeY;
-    public int SizeY
+    private int _startY;
+    public int StartY
     {
-        get => _sizeY;
+        get => _startY;
         set
         {
             Operation.Inputs[2].Set(value);
-            SetProperty(ref _sizeY, value);
+            SetProperty(ref _startY, value);
         }
     }
 

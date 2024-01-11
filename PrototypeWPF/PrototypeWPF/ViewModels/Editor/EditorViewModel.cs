@@ -67,14 +67,14 @@ public class EditorViewModel : ViewModelBase
     {
         foreach (var operation in allOperations)
         {
-            var menuItem = new System.Windows.Controls.MenuItem { Header = operation.Name };
+            var menuItem = new MenuItem { Header = operation.Name };
             menuItem.Click += add;
             ItemContextMenu.Items.Add(menuItem);
             continue;
 
             void add(object sender, RoutedEventArgs e)
             {
-                if (sender is System.Windows.Controls.MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
+                if (sender is MenuItem menuItem && menuItem.Parent is ContextMenu contextMenu)
                 {
                     var target = contextMenu.PlacementTarget;
                     var mousePositionRelativeToTarget = Mouse.GetPosition(target);
@@ -159,5 +159,11 @@ public class EditorViewModel : ViewModelBase
         }
         RaisePropertyChanged(nameof(PinnedNode1));
         RaisePropertyChanged(nameof(PinnedNode2));
+    }
+
+    public void NewFile()
+    {
+        Nodes.Clear();
+        Connections.Clear();
     }
 }
