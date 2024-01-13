@@ -15,8 +15,8 @@
         </StackPanel.Resources>
         <TextBlock Text="Blur" FontSize="20" FontWeight="Bold"/>
         <TextBlock Text="Size:"/>
-        <TextBox Text="{Binding Size}"/>
+        <TextBox Text="{Binding Size, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Strength:"/>
-        <TextBox Text="{Binding Strength}"/>
+        <TextBox Text="{Binding Strength, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel> 
 </UserControl>

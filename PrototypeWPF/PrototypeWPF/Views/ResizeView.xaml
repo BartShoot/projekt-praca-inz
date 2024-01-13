@@ -15,8 +15,8 @@
         <TextBlock Text="Resize" FontSize="20" FontWeight="Bold"/>
 
         <TextBlock Text="Size X:"/>
-        <TextBox Text="{Binding SizeX}"/>
+        <TextBox Text="{Binding SizeX, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Size Y:"/>
-        <TextBox Text="{Binding SizeY}"/>
+        <TextBox Text="{Binding SizeY, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

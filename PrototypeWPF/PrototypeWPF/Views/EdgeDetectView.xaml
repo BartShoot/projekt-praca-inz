@@ -15,8 +15,8 @@
         <TextBlock Text="Edge detect" FontSize="20" FontWeight="Bold"/>
 
         <TextBlock Text="Threshold lower:"/>
-        <TextBox Text="{Binding ThresholdLower}"/>
+        <TextBox Text="{Binding ThresholdLower, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Threshold upper:"/>
-        <TextBox Text="{Binding ThresholdUpper}"/>
+        <TextBox Text="{Binding ThresholdUpper, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>

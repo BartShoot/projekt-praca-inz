@@ -16,13 +16,13 @@
         <TextBlock Text="Crop" FontSize="20" FontWeight="Bold"/>
 
         <TextBlock Text="Start X:"/>
-        <TextBox Text="{Binding StartX}"/>
+        <TextBox Text="{Binding StartX, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Start Y:"/>
-        <TextBox Text="{Binding StartY}"/>
+        <TextBox Text="{Binding StartY, UpdateSourceTrigger=PropertyChanged}"/>
         <ui:NavigationSeparator Margin="0,6,0,2"/>
         <TextBlock Text="Width:"/>
-        <TextBox Text="{Binding Width}"/>
+        <TextBox Text="{Binding Width, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Height:"/>
-        <TextBox Text="{Binding Height}"/>
+        <TextBox Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </UserControl>
