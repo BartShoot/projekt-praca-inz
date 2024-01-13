@@ -55,6 +55,12 @@ public class NodeViewModel : ViewModelBase
         {
             item.PropertyChanged += OutputNodeChangedHandler;
         }
+        OperationViewModel.PropertyChanged += OperationChanged;
+    }
+
+    private void OperationChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        RaisePropertyChanged(nameof(NodeViewModel));
     }
 
     private void OutputNodeChangedHandler(object? sender, PropertyChangedEventArgs e)

@@ -1,17 +1,18 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
+using OpenCvSharp;
 using PrototypeWPF.Model;
 using PrototypeWPF.Utilities;
+using PrototypeWPF.ViewModels.Operations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using NoodleCV;
-using PrototypeWPF.ViewModels.Operations;
 
 namespace PrototypeWPF.ViewModels.Editor;
 public class EditorViewModel : ViewModelBase
@@ -36,7 +37,12 @@ public class EditorViewModel : ViewModelBase
     public NodeViewModel PinnedNode1
     {
         get => _pinnedNode1;
-        set => SetProperty(ref _pinnedNode1, value, () => RaisePropertyChanged(nameof(PinnedOperation1)));
+        set => SetProperty(ref _pinnedNode1, value, () =>
+        {
+            PinnedOperationChangedHandler();
+            RaisePropertyChanged(nameof(PinnedOperation1));
+        }
+        );
     }
     public OperationViewModel? PinnedOperation1 => PinnedNode1?.OperationViewModel;
 
@@ -44,7 +50,12 @@ public class EditorViewModel : ViewModelBase
     public NodeViewModel PinnedNode2
     {
         get => _pinnedNode2;
-        set => SetProperty(ref _pinnedNode2, value, () => RaisePropertyChanged(nameof(PinnedOperation2)));
+        set => SetProperty(ref _pinnedNode2, value, () =>
+        {
+            PinnedOperationChangedHandler();
+            RaisePropertyChanged(nameof(PinnedOperation2));
+        }
+        );
     }
     public OperationViewModel? PinnedOperation2 => PinnedNode2?.OperationViewModel;
     #endregion
@@ -66,8 +77,29 @@ public class EditorViewModel : ViewModelBase
         PinNode2Command = new DelegateCommand(() => PinnedNode2 = SelectedNode);
 
         Connections.CollectionChanged += ConnectionsChangedHandler;
-
         InitializeMenu(allOperations);
+    }
+
+    private void UpdateConnections(object? sender, PropertyChangedEventArgs e)
+    {
+        var node = sender as NodeViewModel;
+        foreach (var con in Connections)
+        {
+            Nodes.Where(n => n.Input.Contains(con.Target)).ToList().ForEach(n =>
+                   {
+                       n.OperationViewModel.NodeInput[0].Set(n.Input[0].Data.Get<Mat>());
+                       n.OperationViewModel.Execute();
+                       n.Output[0].Data.Set(n.OperationViewModel.Operation.Outputs[0].Get<Mat>());
+                       RaisePropertyChanged(nameof(n.OperationViewModel));
+                       RaisePropertyChanged(nameof(con.Target));
+                       RaisePropertyChanged(nameof(PinnedOperation2));
+                   });
+        }
+    }
+
+    private void PinnedOperationChangedHandler()
+    {
+        ConnectionsChangedHandler(new object(), new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
 
     private void InitializeMenu(IReadOnlyList<OperationDescriptor> allOperations)
@@ -86,7 +118,9 @@ public class EditorViewModel : ViewModelBase
                     var target = contextMenu.PlacementTarget;
                     var mousePositionRelativeToTarget = Mouse.GetPosition(target);
                     var viewModel = operation.CreateViewModel();
-                    Nodes.Add(new NodeViewModel(operation.Name, viewModel, mousePositionRelativeToTarget));
+                    var node = new NodeViewModel(operation.Name, viewModel, mousePositionRelativeToTarget);
+                    node.PropertyChanged += UpdateConnections;
+                    Nodes.Add(node);
 
                     viewModel.PropertyChanged += (sender, e) =>
                     {
@@ -163,6 +197,8 @@ public class EditorViewModel : ViewModelBase
                     Wpf.Ui.Common.SymbolRegular.TextBulletListSquareWarning16, Wpf.Ui.Common.ControlAppearance.Danger);
                 break;
             }
+            Connections.Where(c => node.Output.Contains(c.Source)).ToList()
+                .ForEach(con => con = new ConnectionViewModel(con.Source, con.Target));
         }
         RaisePropertyChanged(nameof(PinnedNode1));
         RaisePropertyChanged(nameof(PinnedNode2));
