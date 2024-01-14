@@ -91,7 +91,8 @@ public class EditorViewModel : ViewModelBase
                    {
                        n.OperationViewModel.NodeInput[0].Set(n.Input[0].Data.Get<Mat>());
                        n.OperationViewModel.Execute();
-                       n.Output[0].Data.Set(n.OperationViewModel.Operation.Outputs[0].Get<Mat>());
+                       if (n.Output.Count > 0)
+                           n.Output[0].Data.Set(n.OperationViewModel.Operation.Outputs[0].Get<Mat>());
                        RaisePropertyChanged(nameof(n.OperationViewModel));
                        RaisePropertyChanged(nameof(con.Target));
                        RaisePropertyChanged(nameof(PinnedOperation2));
