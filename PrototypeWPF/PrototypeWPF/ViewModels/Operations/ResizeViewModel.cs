@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class ResizeViewModel : OperationViewModel
+public class ResizeViewModel : OperationViewModel, IOperationViewModel
 {
     public ResizeViewModel()
     {
@@ -40,5 +40,12 @@ public class ResizeViewModel : OperationViewModel
             Operation.Inputs[2].Set(value);
             SetProperty(ref _sizeY, value);
         }
+    }
+
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as ResizeViewModel;
+        SizeX = vm.SizeX;
+        SizeY = vm.SizeY;
     }
 }

@@ -31,5 +31,16 @@ public class ChangeColorspaceViewModel : OperationViewModel
             SetProperty(ref _conversionCodes, value);
         }
     }
+
+    public Array ColorCodesList
+    {
+        get => Enum.GetValues(typeof(ColorConversionCodes));
+    }
+
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as ChangeColorspaceViewModel;
+        ConversionCodes = vm.ConversionCodes;
+    }
     public Array ColorCodesList { get => Enum.GetValues(typeof(ColorConversionCodes)); }
 }

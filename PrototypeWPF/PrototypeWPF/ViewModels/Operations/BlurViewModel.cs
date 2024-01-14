@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class BlurViewModel : OperationViewModel
+public class BlurViewModel : OperationViewModel, IOperationViewModel
 {
     public BlurViewModel()
     {
@@ -72,4 +72,10 @@ public class BlurViewModel : OperationViewModel
         }
     }
 
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as BlurViewModel;
+        Strength = vm.Strength;
+        Size = vm.Size;
+    }
 }

@@ -1,13 +1,13 @@
-﻿using System;
-using PrototypeWPF.ViewModels.Operations;
+﻿using PrototypeWPF.ViewModels.Operations;
+using System;
 
 namespace PrototypeWPF.Model
 {
     public class OperationDescriptor
     {
-        private readonly Func<OperationViewModel> _createViewModel;
+        private readonly Func<IOperationViewModel> _createViewModel;
 
-        public OperationDescriptor(string name, Func<OperationViewModel> createViewModel)
+        public OperationDescriptor(string name, Func<IOperationViewModel> createViewModel)
         {
             Name = name;
             _createViewModel = createViewModel;
@@ -15,7 +15,7 @@ namespace PrototypeWPF.Model
 
         public string Name { get; }
 
-        public OperationViewModel CreateViewModel()
+        public IOperationViewModel CreateViewModel()
             => _createViewModel();
     }
 }

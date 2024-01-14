@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class LoadImageViewModel : OperationViewModel
+public class LoadImageViewModel : OperationViewModel, IOperationViewModel
 {
     public LoadImageViewModel()
     {
@@ -50,5 +50,11 @@ public class LoadImageViewModel : OperationViewModel
 
             Operation.Execute();
         }
+    }
+
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as LoadImageViewModel;
+        ImagePath = vm.ImagePath;
     }
 }

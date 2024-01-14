@@ -28,9 +28,10 @@ public class NodeViewModel : ViewModelBase
     private ObservableCollection<ConnectorViewModel> _input;
     private ObservableCollection<ConnectorViewModel> _output;
 
-    public OperationViewModel OperationViewModel
+    [JsonProperty]
+    public IOperationViewModel OperationViewModel
     {
-        get;
+        get; private set;
     }
 
     public System.Windows.Point Location
@@ -39,11 +40,18 @@ public class NodeViewModel : ViewModelBase
         set => SetProperty(ref _location, value);
     }
 
-    public NodeViewModel(string name, OperationViewModel operationViewModel, System.Windows.Point placement)
+    public NodeViewModel() { }
+
+    public NodeViewModel(string name, IOperationViewModel operationViewModel, System.Windows.Point placement) : this(name, operationViewModel, placement, Guid.NewGuid())
+    {
+
+    }
+
+    public NodeViewModel(string name, IOperationViewModel operationViewModel, System.Windows.Point placement, Guid id)
     {
         Title = name;
         OperationViewModel = operationViewModel;
-        Guid Id = Guid.NewGuid();
+        Id = id;
         Input = new ObservableCollection<ConnectorViewModel>(OperationViewModel.NodeInput.Select(x => new ConnectorViewModel(x, Id)));
         Output = new ObservableCollection<ConnectorViewModel>(OperationViewModel.Operation.Outputs.Select(x => new ConnectorViewModel(x, Id)));
         Location = placement;

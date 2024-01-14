@@ -44,7 +44,7 @@ public class EditorViewModel : ViewModelBase
         }
         );
     }
-    public OperationViewModel? PinnedOperation1 => PinnedNode1?.OperationViewModel;
+    public IOperationViewModel? PinnedOperation1 => PinnedNode1?.OperationViewModel;
 
     private NodeViewModel _pinnedNode2;
     public NodeViewModel PinnedNode2
@@ -57,7 +57,7 @@ public class EditorViewModel : ViewModelBase
         }
         );
     }
-    public OperationViewModel? PinnedOperation2 => PinnedNode2?.OperationViewModel;
+    public IOperationViewModel? PinnedOperation2 => PinnedNode2?.OperationViewModel;
     #endregion
 
     #region commands
@@ -65,6 +65,7 @@ public class EditorViewModel : ViewModelBase
     public ICommand PinNode2Command { get; }
     public ICommand DeleteSelectedCommand { get; }
     public ICommand DisconnectConnectorCommand { get; }
+    public IReadOnlyList<OperationDescriptor> AllOperations { get; }
     #endregion
 
     public EditorViewModel(IReadOnlyList<OperationDescriptor> allOperations)

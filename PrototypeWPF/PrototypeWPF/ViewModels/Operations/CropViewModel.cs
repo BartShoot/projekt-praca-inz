@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class CropViewModel : OperationViewModel
+public class CropViewModel : OperationViewModel, IOperationViewModel
 {
     public CropViewModel()
     {
@@ -63,5 +63,14 @@ public class CropViewModel : OperationViewModel
             Operation.Inputs[4].Set(value);
             SetProperty(ref _height, value);
         }
+    }
+
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as CropViewModel;
+        Height = vm.Height;
+        Width = vm.Width;
+        StartX = vm.StartX;
+        StartY = vm.StartY;
     }
 }

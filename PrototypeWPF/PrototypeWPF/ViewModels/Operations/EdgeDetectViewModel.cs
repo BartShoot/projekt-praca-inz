@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class EdgeDetectViewModel : OperationViewModel
+public class EdgeDetectViewModel : OperationViewModel, IOperationViewModel
 {
     public EdgeDetectViewModel()
     {
@@ -40,5 +40,12 @@ public class EdgeDetectViewModel : OperationViewModel
             Operation.Inputs[2].Set(value);
             SetProperty(ref _thresholdUpper, value);
         }
+    }
+
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as EdgeDetectViewModel;
+        ThresholdLower = vm.ThresholdLower;
+        ThresholdUpper = vm.ThresholdUpper;
     }
 }

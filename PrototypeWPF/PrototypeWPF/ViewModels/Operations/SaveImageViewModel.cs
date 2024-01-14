@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class SaveImageViewModel : OperationViewModel
+public class SaveImageViewModel : OperationViewModel, IOperationViewModel
 {
     public SaveImageViewModel()
     {
@@ -52,4 +52,9 @@ public class SaveImageViewModel : OperationViewModel
         }
     }
 
+    public void CopyParameter(IOperationViewModel operationViewModel)
+    {
+        var vm = operationViewModel as SaveImageViewModel;
+        ImagePath = vm.ImagePath;
+    }
 }
