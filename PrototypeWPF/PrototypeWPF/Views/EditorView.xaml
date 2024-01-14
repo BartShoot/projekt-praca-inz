@@ -70,7 +70,7 @@
 
             <nodify:NodifyEditor.ItemTemplate>
                 <DataTemplate DataType="{x:Type editor:NodeViewModel}">
-                    <nodify:Node Header="{Binding Title}" 
+                    <nodify:Node Header="{Binding Title}" FontWeight="Bold" 
                                  Input="{Binding Input}"
                                  Output="{Binding Output}">
 
@@ -91,11 +91,14 @@
                                             BorderBrush="#f2433b"/>
                             </DataTemplate>
                         </nodify:Node.OutputConnectorTemplate>
-
-                        <StackPanel>
-                            <TextBlock Text="{Binding OperationViewModel.Operation, Converter={StaticResource OperationToNodeDescriptionConverter}, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
+                        <nodify:Node.Footer>
+                                <TextBlock FontWeight="UltraLight" Text="{Binding OperationViewModel.Operation, Converter={StaticResource OperationToNodeDescriptionConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                        </nodify:Node.Footer>
+                        <nodify:Node.FooterBrush>
+                            <SolidColorBrush Color="#002d2d30" />
+                        </nodify:Node.FooterBrush>
                     </nodify:Node>
+
                 </DataTemplate>
             </nodify:NodifyEditor.ItemTemplate>
 

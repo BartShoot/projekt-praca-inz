@@ -1,11 +1,8 @@
 ﻿using NoodleCV;
 using OpenCvSharp;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace PrototypeWPF.Utilities
 {
@@ -23,9 +20,7 @@ namespace PrototypeWPF.Utilities
             if (image is null)
                 return "Image not calculated.";
 
-            return @$"Width {image.Width}
-Height: {image.Height}
-Channels: {image.Channels()}";
+            return @$"{image.Width}x{image.Height} Channels: {image.Channels()}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
