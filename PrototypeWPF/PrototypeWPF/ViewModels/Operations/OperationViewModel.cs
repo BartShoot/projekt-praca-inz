@@ -30,24 +30,25 @@ public abstract class OperationViewModel : ViewModelBase
 
     protected override bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
-        var test = Execute();
+        var result = Execute();
+        RaisePropertyChanged(nameof(Operation));
+
         var mainWindow = Application.Current.MainWindow as MainWindow;
         var editor = mainWindow.EditorViewName;
 
-        if (test.Status.Equals(true) && editor.RootSnackbar.IsShown)
+        if (result.Status.Equals(true) && editor.RootSnackbar.IsShown)
         {
             editor.RootSnackbar.Hide();
         }
-        if (test.Status.Equals(false))
+        if (result.Status.Equals(false))
         {
-            string errors = string.Join(", ", test.Errors);
+            string errors = string.Join(", ", result.Errors);
             errors += '.';
             (editor)?.RootSnackbar.Show("Can't calculate " +
                 Regex.Replace(Operation.GetType().Name, "(\\B[A-Z])", " $1"), errors,
                 Wpf.Ui.Common.SymbolRegular.TextBulletListSquareWarning16,
                 Wpf.Ui.Common.ControlAppearance.Danger);
         }
-        RaisePropertyChanged(nameof(Operation));
         return base.SetProperty(ref storage, value, propertyName);
     }
 }

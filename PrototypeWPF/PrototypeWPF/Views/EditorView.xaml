@@ -14,6 +14,7 @@
     
     <UserControl.Resources>
         <converters:OperationToImageSourceConverter x:Key="OperationToImage"/>
+        <converters:OperationToNodeDescriptionConverter x:Key="OperationToNodeDescriptionConverter"/>
     </UserControl.Resources>
 
     <Grid Background="#1e1e1e">
@@ -91,6 +92,9 @@
                             </DataTemplate>
                         </nodify:Node.OutputConnectorTemplate>
 
+                        <StackPanel>
+                            <TextBlock Text="{Binding OperationViewModel.Operation, Converter={StaticResource OperationToNodeDescriptionConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
                     </nodify:Node>
                 </DataTemplate>
             </nodify:NodifyEditor.ItemTemplate>

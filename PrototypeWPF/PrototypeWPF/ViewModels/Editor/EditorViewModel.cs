@@ -195,7 +195,7 @@ public class EditorViewModel : ViewModelBase
     {
         foreach (var node in Nodes)
         {
-            var test = node.OperationViewModel.Operation.Execute();
+            var test = node.OperationViewModel.Execute();
             if (test.Status.Equals(false))
             {
                 string errors = string.Join(", ", test.Errors);
