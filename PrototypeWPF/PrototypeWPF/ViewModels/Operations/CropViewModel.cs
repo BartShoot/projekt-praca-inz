@@ -24,7 +24,7 @@ public class CropViewModel : OperationViewModel, IOperationViewModel
     private int _startX;
     public int StartX
     {
-        get => _startX;
+        get => Operation.Inputs[1].Get<int>();
         set
         {
             Operation.Inputs[1].Set(value);
@@ -35,7 +35,7 @@ public class CropViewModel : OperationViewModel, IOperationViewModel
     private int _startY;
     public int StartY
     {
-        get => _startY;
+        get => Operation.Inputs[2].Get<int>();
         set
         {
             Operation.Inputs[2].Set(value);
@@ -46,7 +46,7 @@ public class CropViewModel : OperationViewModel, IOperationViewModel
     private int _width;
     public int Width
     {
-        get => _width;
+        get => Operation.Inputs[3].Get<int>();
         set
         {
             Operation.Inputs[3].Set(value);
@@ -57,7 +57,7 @@ public class CropViewModel : OperationViewModel, IOperationViewModel
     private int _height;
     public int Height
     {
-        get => _height;
+        get => Operation.Inputs[4].Get<int>();
         set
         {
             Operation.Inputs[4].Set(value);

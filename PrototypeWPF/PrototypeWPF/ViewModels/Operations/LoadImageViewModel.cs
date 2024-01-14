@@ -25,7 +25,7 @@ public class LoadImageViewModel : OperationViewModel, IOperationViewModel
     private string _imagePath;
     public string ImagePath
     {
-        get => _imagePath;
+        get => Operation.Inputs[0].Get<string>();
         set
         {
             Operation.Inputs[0].Set(value);

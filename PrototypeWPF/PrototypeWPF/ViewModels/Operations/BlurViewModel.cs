@@ -41,7 +41,7 @@ public class BlurViewModel : OperationViewModel, IOperationViewModel
     private int _size;
     public int Size
     {
-        get => _size;
+        get => Operation.Inputs[1].Get<int>();
         set
         {
             Operation.Inputs[1].Set(value);
@@ -52,7 +52,7 @@ public class BlurViewModel : OperationViewModel, IOperationViewModel
     private double _strength;
     public double Strength
     {
-        get => _strength;
+        get => Operation.Inputs[2].Get<double>();
         set
         {
             Operation.Inputs[2].Set(value);

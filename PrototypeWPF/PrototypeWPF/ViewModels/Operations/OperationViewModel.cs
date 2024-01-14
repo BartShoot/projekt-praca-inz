@@ -24,6 +24,9 @@ public abstract class OperationViewModel : ViewModelBase
     }
     public Result Execute()
         => Operation.Execute();
+    public OperationViewModel()
+    {
+    }
 
     protected override bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {

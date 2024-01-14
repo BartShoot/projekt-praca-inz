@@ -23,7 +23,7 @@ public class EdgeDetectViewModel : OperationViewModel, IOperationViewModel
 
     public double ThresholdLower
     {
-        get => _thresholdLower;
+        get => Operation.Inputs[1].Get<double>();
         set
         {
             Operation.Inputs[1].Set(value);
@@ -34,7 +34,7 @@ public class EdgeDetectViewModel : OperationViewModel, IOperationViewModel
 
     public double ThresholdUpper
     {
-        get => _thresholdUpper;
+        get => Operation.Inputs[2].Get<double>();
         set
         {
             Operation.Inputs[2].Set(value);

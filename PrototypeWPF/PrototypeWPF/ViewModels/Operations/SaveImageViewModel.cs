@@ -26,7 +26,7 @@ public class SaveImageViewModel : OperationViewModel, IOperationViewModel
 
     public string ImagePath
     {
-        get => _imagePath;
+        get => Operation.Inputs[1].Get<string>();
         set
         {
             Operation.Inputs[1].Set(value);

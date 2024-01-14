@@ -23,7 +23,7 @@ public class ResizeViewModel : OperationViewModel, IOperationViewModel
     private int _sizeX;
     public int SizeX
     {
-        get => _sizeX;
+        get => Operation.Inputs[1].Get<int>();
         set
         {
             Operation.Inputs[1].Set(value);
@@ -34,7 +34,7 @@ public class ResizeViewModel : OperationViewModel, IOperationViewModel
     private int _sizeY;
     public int SizeY
     {
-        get => _sizeY;
+        get => Operation.Inputs[2].Get<int>();
         set
         {
             Operation.Inputs[2].Set(value);

@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace PrototypeWPF.ViewModels.Operations;
 
-public class ChangeColorspaceViewModel : OperationViewModel
+public class ChangeColorspaceViewModel : OperationViewModel, IOperationViewModel
 {
     public ChangeColorspaceViewModel()
     {
@@ -24,7 +24,7 @@ public class ChangeColorspaceViewModel : OperationViewModel
 
     public ColorConversionCodes ConversionCodes
     {
-        get => _conversionCodes;
+        get => Operation.Inputs[1].Get<ColorConversionCodes>();
         set
         {
             Operation.Inputs[1].Set(value);
@@ -42,5 +42,4 @@ public class ChangeColorspaceViewModel : OperationViewModel
         var vm = operationViewModel as ChangeColorspaceViewModel;
         ConversionCodes = vm.ConversionCodes;
     }
-    public Array ColorCodesList { get => Enum.GetValues(typeof(ColorConversionCodes)); }
 }
