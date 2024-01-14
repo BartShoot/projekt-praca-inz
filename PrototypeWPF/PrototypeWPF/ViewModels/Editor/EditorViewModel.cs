@@ -79,6 +79,7 @@ public class EditorViewModel : ViewModelBase
 
         Connections.CollectionChanged += ConnectionsChangedHandler;
         InitializeMenu(allOperations);
+        AllOperations = allOperations;
     }
 
     private void UpdateConnections(object? sender, PropertyChangedEventArgs e)
@@ -209,6 +210,8 @@ public class EditorViewModel : ViewModelBase
     {
         Nodes.Clear();
         Connections.Clear();
+        PinnedNode1 = null;
+        PinnedNode2 = null;
     }
 
     public void SaveFile()
@@ -250,15 +253,27 @@ public class EditorViewModel : ViewModelBase
 
             this.Nodes.Clear();
             foreach (var node in appState.Nodes)
-                this.Nodes.Add(node);
+            {
+                var vm = AllOperations.Where(op =>
+                op.Name.Equals(node.Title)).First().CreateViewModel();
+                vm.CopyParameter(node.OperationViewModel);
+                Nodes.Add(new NodeViewModel(node.Title, vm, node.Location, node.Id));
+            }
 
             this.Connections.Clear();
             foreach (var connection in appState.Connections)
-                this.Connections.Add(connection);
+            {
+                var node1 = Nodes.Where(n => n.Id.Equals(connection.Source.Id)).First();
+                var node2 = Nodes.Where(n => n.Id.Equals(connection.Target.Id)).First();
+                Connect(node1.Output[0], node2.Input[0]);
+            }
 
-            this.SelectedNode = appState.SelectedNode;
-            this.PinnedNode1 = appState.PinnedNode1;
-            this.PinnedNode2 = appState.PinnedNode2;
+            if (appState.SelectedNode != null)
+                this.SelectedNode = Nodes.Where(n => n.Id.Equals(appState.SelectedNode.Id)).First();
+            if (appState.PinnedNode1 != null)
+                this.PinnedNode1 = Nodes.Where(n => n.Id.Equals(appState.PinnedNode1.Id)).First();
+            if (appState.PinnedNode2 != null)
+                this.PinnedNode2 = Nodes.Where(n => n.Id.Equals(appState.PinnedNode2.Id)).First();
         }
     }
 

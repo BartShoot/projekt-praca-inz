@@ -1,4 +1,5 @@
-﻿using OpenCvSharp;
+﻿using Newtonsoft.Json;
+using OpenCvSharp;
 using PrototypeWPF.ViewModels.Operations;
 using System;
 using System.Collections.ObjectModel;
@@ -10,7 +11,13 @@ namespace PrototypeWPF.ViewModels.Editor;
 public class NodeViewModel : ViewModelBase
 {
     public string Title { get; set; }
-    public Guid Id { get; private set; }
+
+    [JsonProperty]
+    public Guid Id
+    {
+        get;
+        private set;
+    }
 
     public ObservableCollection<ConnectorViewModel> Input
     {
