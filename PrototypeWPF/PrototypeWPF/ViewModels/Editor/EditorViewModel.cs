@@ -165,13 +165,16 @@ public class EditorViewModel : ViewModelBase
 
     private void DisconnectConnector(ConnectorViewModel connector)
     {
-        var connection = Connections.First(x => x.Source == connector || x.Target == connector);
-        if (Connections.Count.Equals(1))
+        var connection = Connections.Where(x => x.Source == connector || x.Target == connector).ToList();
+        foreach (var node in connection)
         {
-            connection.Source.IsConnected = false;
+            if (connection.Count.Equals(1))
+            {
+                connection[0].Source.IsConnected = false;
+            }
+            node.Target.IsConnected = false;
+            Connections.Remove(node);
         }
-        connection.Target.IsConnected = false;
-        Connections.Remove(connection);
     }
 
     public void Connect(ConnectorViewModel source, ConnectorViewModel target)
