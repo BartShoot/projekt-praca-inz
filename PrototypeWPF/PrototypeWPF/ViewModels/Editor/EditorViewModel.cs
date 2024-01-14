@@ -124,6 +124,10 @@ public class EditorViewModel : ViewModelBase
                     var node = new NodeViewModel(operation.Name, viewModel, mousePositionRelativeToTarget);
                     node.PropertyChanged += UpdateConnections;
                     Nodes.Add(node);
+                    if (PinnedNode1 == null)
+                        PinnedNode1 = node;
+                    PinnedNode2 = node;
+                    SelectedNode = node;
 
                     viewModel.PropertyChanged += (sender, e) =>
                     {
