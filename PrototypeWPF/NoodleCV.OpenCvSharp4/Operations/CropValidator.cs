@@ -21,8 +21,8 @@ class CropValidator : AbstractValidator<IReadOnlyList<OperationInput>>
             RuleFor(list => list[3]).Must(width => width.Get<int>() < mat.Width).WithMessage("Width must less than image width");
             RuleFor(list => list[4]).Must(height => height.Get<int>() < mat.Height).WithMessage("Height must less than image height");
 
-            RuleFor(list => list[1].Get<int>() + list[2].Get<int>()).Must(widthSum => widthSum < mat.Width).WithMessage("Combined Start X and Width must be less than image width");
-            RuleFor(list => list[3].Get<int>() + list[4].Get<int>()).Must(heightSum => heightSum < mat.Height).WithMessage("Combined Start Y and Height must be less than image height");
+            RuleFor(list => list[1].Get<int>() + list[3].Get<int>()).Must(widthSum => widthSum < mat.Width).WithMessage("Combined Start X and Width must be less than image width");
+            RuleFor(list => list[2].Get<int>() + list[4].Get<int>()).Must(heightSum => heightSum < mat.Height).WithMessage("Combined Start Y and Height must be less than image height");
         }
     }
 }
