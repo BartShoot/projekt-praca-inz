@@ -1,0 +1,639 @@
+{
+  "Nodes": [
+    {
+      "Title": "Load image",
+      "Id": "82aec0f8-8929-4465-8e23-b620477068fc",
+      "Input": [],
+      "Output": [
+        {
+          "Anchor": "277,205",
+          "IsConnected": true,
+          "Id": "82aec0f8-8929-4465-8e23-b620477068fc",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.LoadImageViewModel, PrototypeWPF",
+        "ImagePath": "C:\\Users\\dobij\\source\\repos\\NoodleCV\\PrototypeWPF\\PrototypeWPF\\Resources\\IMG20240116193312.jpg",
+        "LoadImageCommand": {
+          "$type": "PrototypeWPF.Utilities.DelegateCommand, PrototypeWPF"
+        },
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.LoadImage, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "140,168"
+    },
+    {
+      "Title": "Crop",
+      "Id": "84513496-eb87-4c10-b0d8-53a46f1bf69c",
+      "Input": [
+        {
+          "Anchor": "434,167",
+          "IsConnected": true,
+          "Id": "84513496-eb87-4c10-b0d8-53a46f1bf69c",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "Output": [
+        {
+          "Anchor": "555,167",
+          "IsConnected": true,
+          "Id": "84513496-eb87-4c10-b0d8-53a46f1bf69c",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.CropViewModel, PrototypeWPF",
+        "StartX": 2500,
+        "StartY": 1700,
+        "Width": 1500,
+        "Height": 1500,
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.Crop, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "422,130"
+    },
+    {
+      "Title": "Edge detect",
+      "Id": "a8e2b711-5b11-4c99-b552-3f480837e715",
+      "Input": [
+        {
+          "Anchor": "939,184",
+          "IsConnected": true,
+          "Id": "a8e2b711-5b11-4c99-b552-3f480837e715",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "Output": [
+        {
+          "Anchor": "1057,184",
+          "IsConnected": true,
+          "Id": "a8e2b711-5b11-4c99-b552-3f480837e715",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.EdgeDetectViewModel, PrototypeWPF",
+        "ThresholdLower": 50.0,
+        "ThresholdUpper": 90.0,
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.EdgeDetect, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            },
+            {
+              "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "927,147"
+    },
+    {
+      "Title": "Blur",
+      "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+      "Input": [
+        {
+          "Anchor": "714.0000000000001,192",
+          "IsConnected": true,
+          "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "Output": [
+        {
+          "Anchor": "835,192",
+          "IsConnected": true,
+          "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.BlurViewModel, PrototypeWPF",
+        "Size": 21,
+        "Strength": 3.0,
+        "InputImage": null,
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.Blur, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "702,155"
+    },
+    {
+      "Title": "Resize",
+      "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+      "Input": [
+        {
+          "Anchor": "1426,188",
+          "IsConnected": true,
+          "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "Output": [
+        {
+          "Anchor": "0,0",
+          "IsConnected": false,
+          "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.ResizeViewModel, PrototypeWPF",
+        "SizeX": 1000,
+        "SizeY": 1000,
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.Resize, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "1414,151"
+    },
+    {
+      "Title": "Blur",
+      "Id": "dac8067a-4153-485e-b3ec-9e4c3bca36e4",
+      "Input": [
+        {
+          "Anchor": "1186,188",
+          "IsConnected": true,
+          "Id": "dac8067a-4153-485e-b3ec-9e4c3bca36e4",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "Output": [
+        {
+          "Anchor": "1303.9999999999998,188",
+          "IsConnected": true,
+          "Id": "dac8067a-4153-485e-b3ec-9e4c3bca36e4",
+          "Data": {
+            "$type": "NoodleCV.OperationOutput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        }
+      ],
+      "OperationViewModel": {
+        "$type": "PrototypeWPF.ViewModels.Operations.BlurViewModel, PrototypeWPF",
+        "Size": 3,
+        "Strength": 3.0,
+        "InputImage": null,
+        "Operation": {
+          "$type": "NoodleCV.OpenCvSharp4.Operations.Blur, NoodleCV.OpenCvSharp4",
+          "Inputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            },
+            {
+              "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            },
+            {
+              "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+            }
+          ],
+          "Outputs": [
+            {
+              "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+            }
+          ]
+        },
+        "NodeInput": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ],
+        "NodeParameter": [
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "$type": "NoodleCV.OperationInput, NoodleCV",
+            "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ]
+      },
+      "Location": "1174,151"
+    }
+  ],
+  "Connections": [
+    {
+      "Source": {
+        "Anchor": "277,205",
+        "IsConnected": true,
+        "Id": "82aec0f8-8929-4465-8e23-b620477068fc",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      },
+      "Target": {
+        "Anchor": "434,167",
+        "IsConnected": true,
+        "Id": "84513496-eb87-4c10-b0d8-53a46f1bf69c",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    },
+    {
+      "Source": {
+        "Anchor": "555,167",
+        "IsConnected": true,
+        "Id": "84513496-eb87-4c10-b0d8-53a46f1bf69c",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      },
+      "Target": {
+        "Anchor": "714.0000000000001,192",
+        "IsConnected": true,
+        "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    },
+    {
+      "Source": {
+        "Anchor": "835,192",
+        "IsConnected": true,
+        "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      },
+      "Target": {
+        "Anchor": "939,184",
+        "IsConnected": true,
+        "Id": "a8e2b711-5b11-4c99-b552-3f480837e715",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    },
+    {
+      "Source": {
+        "Anchor": "1057,184",
+        "IsConnected": true,
+        "Id": "a8e2b711-5b11-4c99-b552-3f480837e715",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      },
+      "Target": {
+        "Anchor": "1186,188",
+        "IsConnected": true,
+        "Id": "dac8067a-4153-485e-b3ec-9e4c3bca36e4",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    },
+    {
+      "Source": {
+        "Anchor": "1303.9999999999998,188",
+        "IsConnected": true,
+        "Id": "dac8067a-4153-485e-b3ec-9e4c3bca36e4",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      },
+      "Target": {
+        "Anchor": "1426,188",
+        "IsConnected": true,
+        "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    }
+  ],
+  "SelectedNode": null,
+  "PinnedNode1": {
+    "Title": "Blur",
+    "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+    "Input": [
+      {
+        "Anchor": "714.0000000000001,192",
+        "IsConnected": true,
+        "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    ],
+    "Output": [
+      {
+        "Anchor": "835,192",
+        "IsConnected": true,
+        "Id": "dfde7cdc-3465-45f2-8e09-0c07bb1725dd",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    ],
+    "OperationViewModel": {
+      "$type": "PrototypeWPF.ViewModels.Operations.BlurViewModel, PrototypeWPF",
+      "Size": 21,
+      "Strength": 3.0,
+      "InputImage": null,
+      "Operation": {
+        "$type": "NoodleCV.OpenCvSharp4.Operations.Blur, NoodleCV.OpenCvSharp4",
+        "Inputs": [
+          {
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          },
+          {
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ],
+        "Outputs": [
+          {
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ]
+      },
+      "NodeInput": [
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      ],
+      "NodeParameter": [
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+        },
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+        }
+      ]
+    },
+    "Location": "702,155"
+  },
+  "PinnedNode2": {
+    "Title": "Resize",
+    "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+    "Input": [
+      {
+        "Anchor": "1426,188",
+        "IsConnected": true,
+        "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    ],
+    "Output": [
+      {
+        "Anchor": "0,0",
+        "IsConnected": false,
+        "Id": "25c96d9d-a2fc-4d97-a75f-f19140341cd7",
+        "Data": {
+          "$type": "NoodleCV.OperationOutput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      }
+    ],
+    "OperationViewModel": {
+      "$type": "PrototypeWPF.ViewModels.Operations.ResizeViewModel, PrototypeWPF",
+      "SizeX": 1000,
+      "SizeY": 1000,
+      "Operation": {
+        "$type": "NoodleCV.OpenCvSharp4.Operations.Resize, NoodleCV.OpenCvSharp4",
+        "Inputs": [
+          {
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          },
+          {
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          },
+          {
+            "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+          }
+        ],
+        "Outputs": [
+          {
+            "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+          }
+        ]
+      },
+      "NodeInput": [
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "OpenCvSharp.Mat, OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099"
+        }
+      ],
+      "NodeParameter": [
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+        },
+        {
+          "$type": "NoodleCV.OperationInput, NoodleCV",
+          "Type": "System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+        }
+      ]
+    },
+    "Location": "1414,151"
+  }
+}
