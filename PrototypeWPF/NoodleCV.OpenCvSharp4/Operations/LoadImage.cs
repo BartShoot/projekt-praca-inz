@@ -1,3 +1,4 @@
+using FluentValidation.Results;
 using OpenCvSharp;
 
 namespace NoodleCV.OpenCvSharp4.Operations;
@@ -18,13 +19,19 @@ public class LoadImage : IOperation
     {
         var imagePath = Inputs[0].Get<string>();
 
-        if (imagePath != null)
+        ValidationResult result = ValidateInputs();
+        if (!result.IsValid)
         {
-            var output = Cv2.ImRead(imagePath);
-
-            Outputs[0].Set(output);
-            return Result.Ok();
+            return Result.Error(result.Errors);
         }
-        return Result.Error("No file path selected");
+        var output = Cv2.ImRead(imagePath);
+
+        Outputs[0].Set(output);
+        return Result.Ok();
+    }
+    private ValidationResult ValidateInputs()
+    {
+        var validator = new LoadImageValidator();
+        return validator.Validate(Inputs);
     }
 }
