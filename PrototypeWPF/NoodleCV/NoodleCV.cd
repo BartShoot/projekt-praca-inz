@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NoodleCV.OperationData" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAABABAAAAAAAAAgAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>OperationData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OperationInput" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperationInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OperationOutput" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperationOutput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.Result" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Result.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="NoodleCV.IOperation" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IOperation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

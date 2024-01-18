@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.Blur" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\Blur.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.BlurValidator">
+    <Position X="3.5" Y="7.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\BlurValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.ChangeColorspace" BaseTypeListCollapsed="true">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\ChangeColorspace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.ChangeColorspaceValidator">
+    <Position X="8.75" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\ChangeColorspaceValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.Crop" BaseTypeListCollapsed="true">
+    <Position X="7" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\Crop.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.CropValidator">
+    <Position X="8.75" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\CropValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.EdgeDetect" BaseTypeListCollapsed="true">
+    <Position X="7" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\EdgeDetect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.LoadImageValidator">
+    <Position X="3.5" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\LoadImageValidator.cs</FileName>
+      <NewMemberFileName>Operations\EdgeDetectValidator.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.LoadImage" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\LoadImage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.177" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.Resize" BaseTypeListCollapsed="true">
+    <Position X="7" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\Resize.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.ResizeValidator">
+    <Position X="8.75" Y="9.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\ResizeValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.SaveImage" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAQAAAAAAABAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\SaveImage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.SaveImageValidator">
+    <Position X="3.5" Y="9.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\SaveImageValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoodleCV.OperationData">
+    <Position X="13.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NoodleCV.OperationInput">
+    <Position X="16.25" Y="3.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NoodleCV.OperationOutput">
+    <Position X="16.25" Y="5.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NoodleCV.Result">
+    <Position X="3.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NoodleCV.OpenCvSharp4.Operations.EdgeDetectValidator">
+    <Position X="8.75" Y="7.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Operations\EdgeDetectValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="NoodleCV.IOperation">
+    <Position X="1.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
